@@ -55,7 +55,7 @@
                             Get Started
                         </a>
                         <!-- linked to ShabbyTech Website on same ip but different port 81 -->
-                        <a href="{{ env('SHABBY_URL') }}" target="_blank" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
+                        <a href="http://{{ env('SHABBY_URL') }}:81" target="_blank" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
                             ShabbyTech
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
                         </a>
