@@ -24,8 +24,9 @@
                     <a href="/" class="flex items-center space-x-3 group">
                         <div class="relative">
                             <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-glow group-hover:shadow-glow/80 transition-all duration-300">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                <svg class="w-6 h-6 text-white" fill="white" stroke="currentColor" viewBox="0 0 375 350">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="m200 0a175 175 0 0 1 0 350h-50-100v-150h50v-50h50v100h50a75 75 0 0 0 0-150h-100v-50h50v-50m-50 50v-50h-50v50m0 0h-50v50h50m0 0v50h50v-50m0 0"/>
                                 </svg>
                             </div>
                             <div class="absolute -inset-1 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
@@ -92,8 +93,9 @@
                     <div class="lg:col-span-2">
                         <div class="flex items-center space-x-3 mb-6">
                             <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center shadow-glow">
-                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                <svg class="w-7 h-7 text-white" fill="white" stroke="currentColor" viewBox="0 0 375 350">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                    d="m200 0a175 175 0 0 1 0 350h-50-100v-150h50v-50h50v100h50a75 75 0 0 0 0-150h-100v-50h50v-50m-50 50v-50h-50v50m0 0h-50v50h50m0 0v50h50v-50m0 0"/>
                                 </svg>
                             </div>
                             <div>
