@@ -55,8 +55,8 @@
                             Get Started
                         </a>
                         <!-- linked to ShabbyTech Website on same ip but different port 81 -->
-                        <a href="http://{{ env('SHABBY_URL') }}:81" target="_blank" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
-                            ShabbyTech
+                        <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
+                            ShabbyTech http://{{ env('SHABBY_URL') }}
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
                         </a>
                     </div>
@@ -77,6 +77,7 @@
                         <a href="/services" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">Services</a>
                         <a href="/blog" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">Blog/Insights</a>
                         <a href="/contact" class="block py-3 text-primary-600 font-medium">Contact</a>
+                        <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">ShabbyTech http://{{ env('SHABBY_URL') }}</a>
                     </div>
                 </div>
             </nav>
