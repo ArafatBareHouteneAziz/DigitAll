@@ -54,6 +54,11 @@
                         <a href="/contact" class="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-medium hover:shadow-large transform hover:-translate-y-0.5">
                             Get Started
                         </a>
+                        <!-- linked to ShabbyTech Website on same ip but different port 81 -->
+                        <a href="{{ env('SHABBY_URL') }}" target="_blank" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
+                            ShabbyTech
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
+                        </a>
                     </div>
 
                     <!-- Mobile menu button -->
