@@ -77,7 +77,7 @@
                         <a href="/services" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">Services</a>
                         <a href="/blog" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">Blog/Insights</a>
                         <a href="/contact" class="block py-3 text-primary-600 font-medium">Contact</a>
-                        <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">ShabbyTech http://{{ env('SHABBY_URL') }}</a>
+                        <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">ShabbyTech</a>
                     </div>
                 </div>
             </nav>
