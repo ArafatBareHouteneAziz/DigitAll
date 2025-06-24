@@ -61,85 +61,87 @@
                     </div>
 
                     <!-- Mobile menu button -->
-                    <button @click="isOpen = !isOpen" class="lg:hidden text-neutral-600 hover:text-primary-600 transition-colors duration-200">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path x-show="!isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                            <path x-show="isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                    <!-- language selector with flag icons inside dropdown menu -->
-                    <div class="relative" x-data="{ isLanguageOpen: false }">
-                        <button @click="isLanguageOpen = !isLanguageOpen" class="flex items-center space-x-2 text-neutral-600 hover:text-primary-600 transition-colors duration-200">
-                            <!-- Current language flag -->
-                            <span class="text-lg">
-                                @if(app()->getLocale() == 'en')
-                                    🇺🇸
-                                @elseif(app()->getLocale() == 'es')
-                                    🇪🇸
-                                @elseif(app()->getLocale() == 'fr')
-                                    🇫🇷
-                                @elseif(app()->getLocale() == 'de')
-                                    🇩🇪
-                                @else
-                                    🌐
-                                @endif
-                            </span>
-                            <span class="hidden sm:block text-sm font-medium">{{ strtoupper(app()->getLocale()) }}</span>
-                            <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': isLanguageOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    <div class="flex items-center space-x-2">
+                        <button @click="isOpen = !isOpen" class="lg:hidden text-neutral-600 hover:text-primary-600 transition-colors duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path x-show="!isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                                <path x-show="isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
                         </button>
-                        
-                        <!-- Language dropdown -->
-                        <div x-show="isLanguageOpen" 
-                             @click.away="isLanguageOpen = false"
-                             x-transition:enter="transition ease-out duration-200" 
-                             x-transition:enter-start="opacity-0 transform scale-95 -translate-y-2" 
-                             x-transition:enter-end="opacity-100 transform scale-100 translate-y-0" 
-                             x-transition:leave="transition ease-in duration-150" 
-                             x-transition:leave-start="opacity-100 transform scale-100 translate-y-0" 
-                             x-transition:leave-end="opacity-0 transform scale-95 -translate-y-2"
-                             class="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-xl rounded-xl shadow-large border border-neutral-200/50 py-2 z-50">
+                        <!-- language selector with flag icons inside dropdown menu -->
+                        <div class="relative" x-data="{ isLanguageOpen: false }">
+                            <button @click="isLanguageOpen = !isLanguageOpen" class="flex items-center space-x-2 text-neutral-600 hover:text-primary-600 transition-colors duration-200">
+                                <!-- Current language flag -->
+                                <span class="text-lg">
+                                    @if(app()->getLocale() == 'en')
+                                        🇺🇸
+                                    @elseif(app()->getLocale() == 'es')
+                                        🇪🇸
+                                    @elseif(app()->getLocale() == 'fr')
+                                        🇫🇷
+                                    @elseif(app()->getLocale() == 'de')
+                                        🇩🇪
+                                    @else
+                                        🌐
+                                    @endif
+                                </span>
+                                <span class="hidden sm:block text-sm font-medium">{{ strtoupper(app()->getLocale()) }}</span>
+                                <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': isLanguageOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
                             
-                            <a href="{{ route('language.switch', 'en') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
-                                <span class="text-lg">🇺🇸</span>
-                                <span class="font-medium">English</span>
-                                @if(app()->getLocale() == 'en')
-                                    <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                    </svg>
-                                @endif
-                            </a>
-                            
-                            <a href="{{ route('language.switch', 'es') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
-                                <span class="text-lg">🇪🇸</span>
-                                <span class="font-medium">Español</span>
-                                @if(app()->getLocale() == 'es')
-                                    <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                    </svg>
-                                @endif
-                            </a>
-                            
-                            <a href="{{ route('language.switch', 'fr') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
-                                <span class="text-lg">🇫🇷</span>
-                                <span class="font-medium">Français</span>
-                                @if(app()->getLocale() == 'fr')
-                                    <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                    </svg>
-                                @endif
-                            </a>
-                            
-                            <a href="{{ route('language.switch', 'de') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
-                                <span class="text-lg">🇩🇪</span>
-                                <span class="font-medium">Deutsch</span>
-                                @if(app()->getLocale() == 'de')
-                                    <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                    </svg>
-                                @endif
-                            </a>
+                            <!-- Language dropdown -->
+                            <div x-show="isLanguageOpen" 
+                                @click.away="isLanguageOpen = false"
+                                x-transition:enter="transition ease-out duration-200" 
+                                x-transition:enter-start="opacity-0 transform scale-95 -translate-y-2" 
+                                x-transition:enter-end="opacity-100 transform scale-100 translate-y-0" 
+                                x-transition:leave="transition ease-in duration-150" 
+                                x-transition:leave-start="opacity-100 transform scale-100 translate-y-0" 
+                                x-transition:leave-end="opacity-0 transform scale-95 -translate-y-2"
+                                class="absolute right-0 mt-2 w-48 bg-white/95 backdrop-blur-xl rounded-xl shadow-large border border-neutral-200/50 py-2 z-50">
+                                
+                                <a href="{{ route('language.switch', 'en') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                    <span class="text-lg">🇺🇸</span>
+                                    <span class="font-medium">English</span>
+                                    @if(app()->getLocale() == 'en')
+                                        <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                    @endif
+                                </a>
+                                
+                                <a href="{{ route('language.switch', 'es') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                    <span class="text-lg">🇪🇸</span>
+                                    <span class="font-medium">Español</span>
+                                    @if(app()->getLocale() == 'es')
+                                        <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                    @endif
+                                </a>
+                                
+                                <a href="{{ route('language.switch', 'fr') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                    <span class="text-lg">🇫🇷</span>
+                                    <span class="font-medium">Français</span>
+                                    @if(app()->getLocale() == 'fr')
+                                        <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                    @endif
+                                </a>
+                                
+                                <a href="{{ route('language.switch', 'de') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                    <span class="text-lg">🇩🇪</span>
+                                    <span class="font-medium">Deutsch</span>
+                                    @if(app()->getLocale() == 'de')
+                                        <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                    @endif
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
