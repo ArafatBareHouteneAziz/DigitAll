@@ -32,8 +32,7 @@
                             <div class="absolute -inset-1 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
                         </div>
                         <div>
-                            <span class="text-2xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">Digit</span>
-                            <span class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">All</span>
+                            <span class="text-2xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent">Digit'</span><span class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">All</span>
                         </div>
                     </a>
 
