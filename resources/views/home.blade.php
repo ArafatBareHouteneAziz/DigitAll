@@ -24,7 +24,7 @@
             <div class="max-w-4xl mx-auto text-center">
                 <div class="animate-fade-in">
                     <span class="inline-block bg-white/10 backdrop-blur-xl text-white px-6 py-3 rounded-full text-sm font-medium mb-8 border border-white/20">
-                        🚀 Welcome to the Future of Technology
+                        🚀 {{ __('Welcome to the Future of Technology') }}
                     </span>
                 </div>
                 
