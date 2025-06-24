@@ -30,28 +30,28 @@
                 
                 <div class="animate-slide-up" style="animation-delay: 0.2s;">
                     <h1 class="text-5xl md:text-7xl font-bold mb-8 text-white leading-tight">
-                        Transforming Ideas into 
+                        {{ __('Transforming Ideas into') }} 
                         <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-tertiary-400 bg-clip-text text-transparent">
-                            Digital Reality
+                            {{ __('Digital Reality') }}
                         </span>
                     </h1>
                 </div>
                 
                 <div class="animate-slide-up" style="animation-delay: 0.4s;">
                     <p class="text-xl md:text-2xl mb-12 text-neutral-200 leading-relaxed max-w-3xl mx-auto">
-                        Where innovation meets sustainability. We create cutting-edge technology solutions that drive progress while protecting our planet.
+                        {{ __('Where innovation meets sustainability. We create cutting-edge technology solutions that drive progress while protecting our planet.') }}
                     </p>
                 </div>
                 
                 <div class="animate-slide-up flex flex-col sm:flex-row gap-6 justify-center items-center" style="animation-delay: 0.6s;">
                     <a href="/services" class="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-glow hover:shadow-glow/80 transform hover:-translate-y-1 inline-flex items-center space-x-2">
-                        <span>Explore Solutions</span>
+                        <span>{{ __('Explore Solutions') }}</span>
                         <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </a>
                     <a href="/contact" class="group bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 border border-white/20 hover:border-white/40 transform hover:-translate-y-1 inline-flex items-center space-x-2">
-                        <span>Get Started</span>
+                        <span>{{ __('Get Started') }}</span>
                         <svg class="w-5 h-5 group-hover:rotate-45 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                         </svg>
@@ -76,16 +76,16 @@
         <div class="container mx-auto px-6 relative">
             <div class="text-center mb-20">
                 <span class="inline-block bg-gradient-to-r from-primary-50 to-secondary-50 text-primary-600 px-6 py-3 rounded-full text-sm font-semibold mb-6 border border-primary-100">
-                    ✨ Our Services
+                    ✨ {{ __('Our Services') }}
                 </span>
                 <h2 class="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-                    Innovative Solutions for 
+                    {{ __('Innovative Solutions for') }} 
                     <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                        Modern Challenges
+                        {{ __('Modern Challenges') }}
                     </span>
                 </h2>
                 <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-                    We combine cutting-edge technology with sustainable practices to deliver solutions that make a difference.
+                    {{ __('We combine cutting-edge technology with sustainable practices to deliver solutions that make a difference.') }}
                 </p>
             </div>
             
@@ -97,12 +97,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-neutral-900">Digital Innovation</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-neutral-900">{{ __('Digital Innovation') }}</h3>
                     <p class="text-neutral-600 mb-6 leading-relaxed">
-                        Cutting-edge digital solutions powered by AI, IoT, and blockchain technologies to transform your business.
+                        {{ __('Cutting-edge digital solutions powered by AI, IoT, and blockchain technologies to transform your business.') }}
                     </p>
                     <a href="/services#digital-innovation" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold group/link">
-                        Learn More
+                        {{ __('Learn More') }}
                         <svg class="w-5 h-5 ml-2 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
@@ -116,12 +116,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-neutral-900">Sustainable Solutions</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-neutral-900">{{ __('Sustainable Solutions') }}</h3>
                     <p class="text-neutral-600 mb-6 leading-relaxed">
-                        Eco-friendly technology solutions that reduce environmental impact while maximizing efficiency and performance.
+                        {{ __('Eco-friendly technology solutions that reduce environmental impact while maximizing efficiency and performance.') }}
                     </p>
                     <a href="/services#sustainable" class="inline-flex items-center text-secondary-600 hover:text-secondary-700 font-semibold group/link">
-                        Learn More
+                        {{ __('Learn More') }}
                         <svg class="w-5 h-5 ml-2 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
@@ -135,12 +135,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-neutral-900">Enterprise Solutions</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-neutral-900">{{ __('Enterprise Solutions') }}</h3>
                     <p class="text-neutral-600 mb-6 leading-relaxed">
-                        Scalable, secure solutions designed for enterprise-level challenges with comprehensive support and maintenance.
+                        {{ __('Scalable, secure solutions designed for enterprise-level challenges with comprehensive support and maintenance.') }}
                     </p>
                     <a href="/services#enterprise" class="inline-flex items-center text-tertiary-600 hover:text-tertiary-700 font-semibold group/link">
-                        Learn More
+                        {{ __('Learn More') }}
                         <svg class="w-5 h-5 ml-2 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
@@ -157,16 +157,16 @@
         <div class="container mx-auto px-6 relative">
             <div class="max-w-4xl mx-auto text-center mb-20">
                 <span class="inline-block bg-gradient-to-r from-primary-50 to-secondary-50 text-primary-600 px-6 py-3 rounded-full text-sm font-semibold mb-6 border border-primary-100">
-                    🎯 Why Choose Us
+                    🎯 {{ __('Why Choose Us') }}
                 </span>
                 <h2 class="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-                    The Perfect Blend of 
+                    {{ __('The Perfect Blend of') }} 
                     <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                        Innovation & Sustainability
+                        {{ __('Innovation & Sustainability') }}
                     </span>
                 </h2>
                 <p class="text-xl text-neutral-600">
-                    We don't just build technology—we build a better future.
+                    {{ __('We don\'t just build technology, we build a better future.') }}
                 </p>
             </div>
             
@@ -181,9 +181,9 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold mb-4 text-neutral-900">Innovative Approach</h3>
+                            <h3 class="text-2xl font-bold mb-4 text-neutral-900">{{ __('Innovative Approach') }}</h3>
                             <p class="text-neutral-600 leading-relaxed">
-                                We leverage the latest technologies and methodologies to create solutions that are not just current, but future-ready. Our innovative approach ensures your business stays ahead of the curve.
+                                {{ __('We leverage the latest technologies and methodologies to create solutions that are not just current, but future-ready. Our innovative approach ensures your business stays ahead of the curve.') }}
                             </p>
                         </div>
                     </div>
@@ -199,9 +199,9 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold mb-4 text-neutral-900">Sustainable Impact</h3>
+                            <h3 class="text-2xl font-bold mb-4 text-neutral-900">{{ __('Sustainable Impact') }}</h3>
                             <p class="text-neutral-600 leading-relaxed">
-                                Every solution we create is designed with environmental responsibility in mind. We help you achieve your goals while making a positive impact on the planet.
+                                {{ __('Every solution we create is designed with environmental responsibility in mind. We help you achieve your goals while making a positive impact on the planet.') }}
                             </p>
                         </div>
                     </div>
@@ -218,17 +218,17 @@
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-16">
                 <div>
                     <span class="inline-block bg-gradient-to-r from-primary-50 to-secondary-50 text-primary-600 px-6 py-3 rounded-full text-sm font-semibold mb-6 border border-primary-100">
-                        📚 Latest Insights
+                        📚 {{ __('Latest Insights') }}
                     </span>
                     <h2 class="text-4xl md:text-5xl font-bold text-neutral-900">
-                        Stay Ahead of the 
+                        {{ __('Stay Ahead of the') }} 
                         <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                            Curve
+                            {{ __('Curve') }}
                         </span>
                     </h2>
                 </div>
                 <a href="/blog" class="group mt-8 lg:mt-0 inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold text-lg">
-                    View All Articles
+                    {{ __('View All Articles') }}
                     <svg class="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
@@ -246,12 +246,12 @@
                         <div class="flex items-center mb-4">
                             <span class="text-sm text-neutral-500">June 7, 2025</span>
                             <span class="mx-2 text-neutral-300">•</span>
-                            <span class="text-sm text-primary-600 font-semibold">Innovation</span>
+                            <span class="text-sm text-primary-600 font-semibold">{{ __('Innovation') }}</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 text-neutral-900 group-hover:text-primary-600 transition-colors duration-200">The Future of Tech: 2025 & Beyond</h3>
-                        <p class="text-neutral-600 mb-6 leading-relaxed">Exploring the intersection of innovation and sustainability in technology, and what it means for businesses and society.</p>
+                        <h3 class="text-xl font-bold mb-4 text-neutral-900 group-hover:text-primary-600 transition-colors duration-200">{{ __('The Future of Tech: 2025 & Beyond') }}</h3>
+                        <p class="text-neutral-600 mb-6 leading-relaxed">{{ __('Exploring the intersection of innovation and sustainability in technology, and what it means for businesses and society.') }}</p>
                         <a href="/blog/future-of-tech-2025" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold group/link">
-                            Read More
+                            {{ __('Read More') }}
                             <svg class="w-5 h-5 ml-2 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
@@ -269,12 +269,12 @@
                         <div class="flex items-center mb-4">
                             <span class="text-sm text-neutral-500">June 5, 2025</span>
                             <span class="mx-2 text-neutral-300">•</span>
-                            <span class="text-sm text-secondary-600 font-semibold">Sustainability</span>
+                            <span class="text-sm text-secondary-600 font-semibold">{{ __('Sustainability') }}</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 text-neutral-900 group-hover:text-secondary-600 transition-colors duration-200">Green Tech Revolution</h3>
-                        <p class="text-neutral-600 mb-6 leading-relaxed">How sustainable technology is reshaping industries and creating new opportunities for environmentally conscious businesses.</p>
+                        <h3 class="text-xl font-bold mb-4 text-neutral-900 group-hover:text-secondary-600 transition-colors duration-200">{{ __('Green Tech Revolution') }}</h3>
+                        <p class="text-neutral-600 mb-6 leading-relaxed">{{ __('How sustainable technology is reshaping industries and creating new opportunities for environmentally conscious businesses.') }}</p>
                         <a href="/blog/green-tech-revolution" class="inline-flex items-center text-secondary-600 hover:text-secondary-700 font-semibold group/link">
-                            Read More
+                            {{ __('Read More') }}
                             <svg class="w-5 h-5 ml-2 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
@@ -294,10 +294,10 @@
                             <span class="mx-2 text-neutral-300">•</span>
                             <span class="text-sm text-tertiary-600 font-semibold">Enterprise</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 text-neutral-900 group-hover:text-tertiary-600 transition-colors duration-200">Digital Transformation Guide</h3>
-                        <p class="text-neutral-600 mb-6 leading-relaxed">A comprehensive guide to modern digital transformation strategies that drive business growth and competitive advantage.</p>
+                        <h3 class="text-xl font-bold mb-4 text-neutral-900 group-hover:text-tertiary-600 transition-colors duration-200">{{ __('Digital Transformation Guide') }}</h3>
+                        <p class="text-neutral-600 mb-6 leading-relaxed">{{ __('A comprehensive guide to modern digital transformation strategies that drive business growth and competitive advantage.') }}</p>
                         <a href="/blog/digital-transformation-guide" class="inline-flex items-center text-tertiary-600 hover:text-tertiary-700 font-semibold group/link">
-                            Read More
+                            {{ __('Read More') }}
                             <svg class="w-5 h-5 ml-2 group-hover/link:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                             </svg>
@@ -322,23 +322,23 @@
         <div class="container mx-auto px-6 relative">
             <div class="max-w-4xl mx-auto text-center text-white">
                 <h2 class="text-4xl md:text-5xl font-bold mb-8">
-                    Ready to Transform Your 
+                    {{ __('Ready to Transform Your') }} 
                     <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                        Digital Future?
+                        {{ __('Digital Future?') }}
                     </span>
                 </h2>
                 <p class="text-xl md:text-2xl mb-12 text-neutral-200 leading-relaxed">
-                    Join us in building innovative, sustainable solutions that create lasting impact for tomorrow's world.
+                    {{ __('Join us in building innovative, sustainable solutions that create lasting impact for tomorrow\'s world.') }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
                     <a href="/contact" class="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 shadow-glow hover:shadow-glow/80 transform hover:-translate-y-1 inline-flex items-center space-x-2">
-                        <span>Get Started Today</span>
+                        <span>{{ __('Get Started Today') }}</span>
                         <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </a>
                     <a href="/services" class="group bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 border border-white/20 hover:border-white/40 transform hover:-translate-y-1 inline-flex items-center space-x-2">
-                        <span>Learn More</span>
+                        <span>{{ __('Learn More') }}</span>
                         <svg class="w-5 h-5 group-hover:rotate-45 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>

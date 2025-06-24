@@ -10,16 +10,16 @@
         <div class="container mx-auto px-6 relative">
             <div class="max-w-4xl mx-auto text-center">
                 <span class="inline-block bg-gradient-to-r from-primary-50 to-secondary-50 text-primary-600 px-6 py-3 rounded-full text-sm font-semibold mb-6 border border-primary-100">
-                    📞 Get in Touch
+                    📞 {{ __('Get in Touch') }}
                 </span>
                 <h1 class="text-4xl md:text-6xl font-bold mb-8 text-neutral-900">
-                    Let's Build a 
+                    {{ __('Let\'s Build a') }} 
                     <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                        Sustainable Future
+                        {{ __('Sustainable Future') }}
                     </span>
                 </h1>
                 <p class="text-xl md:text-2xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-                    Ready to transform your ideas into sustainable technology solutions? We're here to help you make a positive impact.
+                    {{ __('Ready to transform your ideas into sustainable technology solutions? We\'re here to help you make a positive impact.') }}
                 </p>
             </div>
         </div>
@@ -33,7 +33,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <!-- Contact Form -->
                 <div class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-large border border-neutral-100 p-8 lg:p-12">
-                    <h2 class="text-3xl font-bold mb-8 text-neutral-900">Send Us a Message</h2>
+                    <h2 class="text-3xl font-bold mb-8 text-neutral-900">{{ __('Send Us a Message') }}</h2>
 
                     @if(session('success'))
                         <div class="bg-gradient-to-r from-secondary-50 to-secondary-100 border border-secondary-200 text-secondary-700 px-6 py-4 rounded-xl relative mb-8" role="alert">
@@ -53,7 +53,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                                 <div>
-                                    <p class="font-semibold mb-2">Please fix the following errors:</p>
+                                    <p class="font-semibold mb-2">{{ __('Please fix the following errors:') }}</p>
                                     <ul class="list-disc list-inside space-y-1">
                                         @foreach($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -68,43 +68,43 @@
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="name" class="block text-neutral-700 font-semibold mb-3">Full Name</label>
+                                <label for="name" class="block text-neutral-700 font-semibold mb-3">{{ __('Full Name') }}</label>
                                 <input type="text" id="name" name="name" required value="{{ old('name') }}"
                                     class="w-full px-4 py-4 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent bg-white/50 backdrop-blur-xl transition-all duration-200 @error('name') border-red-300 focus:ring-red-400 @enderror"
-                                    placeholder="Enter your full name">
+                                    placeholder="{{ __('Enter your full name') }}">
                             </div>
                             <div>
-                                <label for="email" class="block text-neutral-700 font-semibold mb-3">Email Address</label>
+                                <label for="email" class="block text-neutral-700 font-semibold mb-3">{{ __('Email Address') }}</label>
                                 <input type="email" id="email" name="email" required value="{{ old('email') }}"
                                     class="w-full px-4 py-4 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent bg-white/50 backdrop-blur-xl transition-all duration-200 @error('email') border-red-300 focus:ring-red-400 @enderror"
-                                    placeholder="Enter your email address">
+                                    placeholder="{{ __('Enter your email address') }}">
                             </div>
                         </div>
                         
                         <div>
-                            <label for="subject" class="block text-neutral-700 font-semibold mb-3">Subject</label>
+                            <label for="subject" class="block text-neutral-700 font-semibold mb-3">{{ __('Subject') }}</label>
                             <select id="subject" name="subject" required
                                 class="w-full px-4 py-4 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent bg-white/50 backdrop-blur-xl transition-all duration-200 @error('subject') border-red-300 focus:ring-red-400 @enderror">
-                                <option value="">Select a subject</option>
-                                <option value="general" {{ old('subject') == 'general' ? 'selected' : '' }}>General Inquiry</option>
-                                <option value="eco-smart-home" {{ old('subject') == 'eco-smart-home' ? 'selected' : '' }}>Eco-Smart Home Solutions</option>
-                                <option value="green-robotics" {{ old('subject') == 'green-robotics' ? 'selected' : '' }}>Green Robotics & Automation</option>
-                                <option value="digital-innovation" {{ old('subject') == 'digital-innovation' ? 'selected' : '' }}>Digital Innovation</option>
-                                <option value="consulting" {{ old('subject') == 'consulting' ? 'selected' : '' }}>Consulting Services</option>
-                                <option value="software" {{ old('subject') == 'software' ? 'selected' : '' }}>Software Development</option>
+                                <option value="">{{ __('Select a subject') }}</option>
+                                <option value="general" {{ old('subject') == 'general' ? 'selected' : '' }}>{{ __('General Inquiry') }}</option>
+                                <option value="eco-smart-home" {{ old('subject') == 'eco-smart-home' ? 'selected' : '' }}>{{ __('Eco-Smart Home Solutions') }}</option>
+                                <option value="green-robotics" {{ old('subject') == 'green-robotics' ? 'selected' : '' }}>{{ __('Green Robotics & Automation') }}</option>
+                                <option value="digital-innovation" {{ old('subject') == 'digital-innovation' ? 'selected' : '' }}>{{ __('Digital Innovation') }}</option>
+                                <option value="consulting" {{ old('subject') == 'consulting' ? 'selected' : '' }}>{{ __('Consulting Services') }}</option>
+                                <option value="software" {{ old('subject') == 'software' ? 'selected' : '' }}>{{ __('Software Development') }}</option>
                             </select>
                         </div>
                         
                         <div>
-                            <label for="message" class="block text-neutral-700 font-semibold mb-3">Message</label>
+                            <label for="message" class="block text-neutral-700 font-semibold mb-3">{{ __('Message') }}</label>
                             <textarea id="message" name="message" rows="6" required
                                 class="w-full px-4 py-4 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent bg-white/50 backdrop-blur-xl transition-all duration-200 @error('message') border-red-300 focus:ring-red-400 @enderror"
-                                placeholder="Tell us about your project or inquiry...">{{ old('message') }}</textarea>
+                                placeholder="{{ __('Tell us about your project or inquiry...') }}">{{ old('message') }}</textarea>
                         </div>
                         
                         <button type="submit"
                             class="w-full group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold py-4 rounded-xl transition-all duration-300 shadow-glow hover:shadow-glow/80 transform hover:-translate-y-1 inline-flex items-center justify-center space-x-2">
-                            <span>Send Message</span>
+                            <span>{{ __('Send Message') }}</span>
                             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                             </svg>
@@ -115,7 +115,7 @@
                 <!-- Contact Information -->
                 <div class="space-y-8">
                     <div class="bg-gradient-to-br from-neutral-50 to-primary-50 rounded-2xl p-8 lg:p-12 border border-neutral-100">
-                        <h2 class="text-3xl font-bold mb-8 text-neutral-900">Contact Information</h2>
+                        <h2 class="text-3xl font-bold mb-8 text-neutral-900">{{ __('Contact Information') }}</h2>
                         <div class="space-y-6">
                             <div class="flex items-start space-x-4">
                                 <div class="w-12 h-12 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -124,8 +124,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-neutral-900 mb-1">Email</h3>
-                                    <a href="mailto:info@digitall.com" class="text-primary-600 hover:text-primary-700 transition-colors duration-200">info@digitall.com</a>
+                                    <h3 class="font-semibold text-neutral-900 mb-1">{{ __('Email') }}</h3>
+                                    <a href="mailto:info@digitall.com" class="text-primary-600 hover:text-primary-700 transition-colors duration-200">{{ __('info@digitall.com') }}</a>
                                 </div>
                             </div>
                             <div class="flex items-start space-x-4">
@@ -135,8 +135,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-neutral-900 mb-1">Website</h3>
-                                    <a href="https://www.digitall.com" class="text-secondary-600 hover:text-secondary-700 transition-colors duration-200">www.digitall.com</a>
+                                    <h3 class="font-semibold text-neutral-900 mb-1">{{ __('Website') }}</h3>
+                                    <a href="https://www.digitall.com" class="text-secondary-600 hover:text-secondary-700 transition-colors duration-200">{{ __('www.digitall.com') }}</a>
                                 </div>
                             </div>
                             <div class="flex items-start space-x-4">
@@ -146,8 +146,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="font-semibold text-neutral-900 mb-1">Response Time</h3>
-                                    <p class="text-neutral-600">We typically respond within 24 hours</p>
+                                    <h3 class="font-semibold text-neutral-900 mb-1">{{ __('Response Time') }}</h3>
+                                    <p class="text-neutral-600">{{ __('We typically respond within 24 hours') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
 
                     <!-- Social Media -->
                     <div class="bg-gradient-to-br from-neutral-50 to-secondary-50 rounded-2xl p-8 lg:p-12 border border-neutral-100">
-                        <h2 class="text-3xl font-bold mb-8 text-neutral-900">Connect With Us</h2>
+                        <h2 class="text-3xl font-bold mb-8 text-neutral-900">{{ __('Connect With Us') }}</h2>
                         <div class="flex space-x-4 mb-6">
                             <a href="#" class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-xl flex items-center justify-center transition-all duration-200 shadow-medium hover:shadow-large transform hover:-translate-y-1 group">
                                 <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
@@ -186,13 +186,13 @@
         <div class="container mx-auto px-6 relative">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-8 text-neutral-900">
-                    Find Us 
+                    {{ __('Find Us') }} 
                     <span class="bg-gradient-to-r from-secondary-600 to-secondary-700 bg-clip-text text-transparent">
-                        Worldwide
+                        {{ __('Worldwide') }}
                     </span>
                 </h2>
                 <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-                    We work with clients globally to create sustainable technology solutions that make a difference.
+                    {{ __('We work with clients globally to create sustainable technology solutions that make a difference.') }}
                 </p>
             </div>
             
@@ -207,8 +207,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
                             </div>
-                            <p class="text-neutral-600 font-semibold">Interactive Map Coming Soon</p>
-                            <p class="text-neutral-500 text-sm mt-2">We're working on an interactive map to show our global presence</p>
+                            <p class="text-neutral-600 font-semibold">{{ __('Interactive Map Coming Soon') }}</p>
+                            <p class="text-neutral-500 text-sm mt-2">{{ __('We\'re working on an interactive map to show our global presence') }}</p>
                         </div>
                     </div>
                 </div>
@@ -230,23 +230,23 @@
         <div class="container mx-auto px-6 relative">
             <div class="max-w-4xl mx-auto text-center text-white">
                 <h2 class="text-4xl md:text-5xl font-bold mb-8">
-                    Ready to Start Your 
+                    {{ __('Ready to Start Your') }} 
                     <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                        Sustainable Journey?
+                        {{ __('Sustainable Journey?') }}
                     </span>
                 </h2>
                 <p class="text-xl md:text-2xl mb-12 text-neutral-200 leading-relaxed">
-                    Let's work together to create innovative solutions that drive sustainable progress and make a positive impact on our world.
+                    {{ __('Let\'s work together to create innovative solutions that drive sustainable progress and make a positive impact on our world.') }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
                     <a href="/services" class="group bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 shadow-glow hover:shadow-glow/80 transform hover:-translate-y-1 inline-flex items-center space-x-2">
-                        <span>Explore Services</span>
+                        <span>{{ __('Explore Services') }}</span>
                         <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </a>
                     <a href="/about" class="group bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 border border-white/20 hover:border-white/40 transform hover:-translate-y-1 inline-flex items-center space-x-2">
-                        <span>Learn About Us</span>
+                        <span>{{ __('Learn About Us') }}</span>
                         <svg class="w-5 h-5 group-hover:rotate-45 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>

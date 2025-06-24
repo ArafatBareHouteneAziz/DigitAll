@@ -39,23 +39,23 @@
                     <!-- Desktop Navigation -->
                     <div class="hidden lg:flex items-center space-x-8">
                         <a href="/about" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
-                            About Us
+                            {{ __('About Us') }}
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
                         </a>
                         <a href="/services" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
-                            Services
+                            {{ __('Services') }}
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
                         </a>
                         <a href="/blog" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
-                            Blog/Insights
+                            {{ __('Blog/Insights') }}
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
                         </a>
                         <a href="/contact" class="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-medium hover:shadow-large transform hover:-translate-y-0.5">
-                            Get Started
+                            {{ __('Get Started') }}
                         </a>
                         <!-- linked to ShabbyTech Website on same ip but different port 81 -->
                         <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
-                            ShabbyTech
+                            {{ __('ShabbyTech') }}
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
                         </a>
                     </div>
@@ -132,14 +132,9 @@
                                     @endif
                                 </a>
                                 
-                                <a href="{{ route('language.switch', 'de') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                <a href="{{ route('language.switch', 'de') }}" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-neutral-50 transition-colors duration-200 {{ app()->getLocale() == 'de' ? 'bg-primary-50 text-primary-600' : 'text-neutral-600' }}">
                                     <span class="text-lg">🇩🇪</span>
-                                    <span class="font-medium">Deutsch</span>
-                                    @if(app()->getLocale() == 'de')
-                                        <svg class="w-4 h-4 text-primary-600 ml-auto" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                        </svg>
-                                    @endif
+                                    <span class="text-sm font-medium">{{ __('Deutsch') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -149,31 +144,31 @@
                 <!-- Mobile Navigation -->
                 <div x-show="isOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" class="lg:hidden mt-6 bg-white/95 backdrop-blur-xl rounded-2xl shadow-large border border-neutral-200/50 p-6">
                     <div class="space-y-4">
-                        <a href="/about" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">About Us</a>
-                        <a href="/services" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">Services</a>
-                        <a href="/blog" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">Blog/Insights</a>
-                        <a href="/contact" class="block py-3 text-primary-600 font-medium">Contact</a>
-                        <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">ShabbyTech</a>
+                        <a href="/about" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">{{ __('About Us') }}</a>
+                        <a href="/services" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">{{ __('Services') }}</a>
+                        <a href="/blog" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">{{ __('Blog/Insights') }}</a>
+                        <a href="/contact" class="block py-3 text-primary-600 font-medium">{{ __('Contact') }}</a>
+                        <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">{{ __('ShabbyTech') }}</a>
                         
                         <!-- Mobile Language Selector -->
                         <div class="pt-4 border-t border-neutral-200">
-                            <h4 class="text-sm font-semibold text-neutral-700 mb-3">Language</h4>
+                            <h4 class="text-sm font-semibold text-neutral-700 mb-3">{{ __('Language') }}</h4>
                             <div class="grid grid-cols-2 gap-2">
                                 <a href="{{ route('language.switch', 'en') }}" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-neutral-50 transition-colors duration-200 {{ app()->getLocale() == 'en' ? 'bg-primary-50 text-primary-600' : 'text-neutral-600' }}">
                                     <span class="text-lg">🇺🇸</span>
-                                    <span class="text-sm font-medium">English</span>
+                                    <span class="text-sm font-medium">{{ __('English') }}</span>
                                 </a>
                                 <a href="{{ route('language.switch', 'es') }}" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-neutral-50 transition-colors duration-200 {{ app()->getLocale() == 'es' ? 'bg-primary-50 text-primary-600' : 'text-neutral-600' }}">
                                     <span class="text-lg">🇪🇸</span>
-                                    <span class="text-sm font-medium">Español</span>
+                                    <span class="text-sm font-medium">{{ __('Español') }}</span>
                                 </a>
                                 <a href="{{ route('language.switch', 'fr') }}" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-neutral-50 transition-colors duration-200 {{ app()->getLocale() == 'fr' ? 'bg-primary-50 text-primary-600' : 'text-neutral-600' }}">
                                     <span class="text-lg">🇫🇷</span>
-                                    <span class="text-sm font-medium">Français</span>
+                                    <span class="text-sm font-medium">{{ __('Français') }}</span>
                                 </a>
                                 <a href="{{ route('language.switch', 'de') }}" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-neutral-50 transition-colors duration-200 {{ app()->getLocale() == 'de' ? 'bg-primary-50 text-primary-600' : 'text-neutral-600' }}">
                                     <span class="text-lg">🇩🇪</span>
-                                    <span class="text-sm font-medium">Deutsch</span>
+                                    <span class="text-sm font-medium">{{ __('Deutsch') }}</span>
                                 </a>
                             </div>
                         </div>
@@ -209,7 +204,7 @@
                             </div>
                         </div>
                         <p class="text-neutral-300 text-lg mb-8 leading-relaxed">
-                            Pioneering innovative technology solutions that drive sustainable progress and create a better future for all.
+                            {{ __('Pioneering innovative technology solutions that drive sustainable progress and create a better future for all.') }}
                         </p>
                         <div class="flex space-x-4">
                             <a href="#" class="w-10 h-10 bg-neutral-800 hover:bg-primary-600 rounded-xl flex items-center justify-center transition-all duration-200 group">
@@ -227,31 +222,31 @@
 
                     <!-- Quick Links -->
                     <div>
-                        <h3 class="text-xl font-semibold mb-6 text-white">Quick Links</h3>
+                        <h3 class="text-xl font-semibold mb-6 text-white">{{ __('Quick Links') }}</h3>
                         <ul class="space-y-3">
-                            <li><a href="/" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">Home</a></li>
-                            <li><a href="/about" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">About Us</a></li>
-                            <li><a href="/services" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">Services</a></li>
-                            <li><a href="/blog" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">Blog/Insights</a></li>
-                            <li><a href="/contact" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">Contact</a></li>
+                            <li><a href="/" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">{{ __('Home') }}</a></li>
+                            <li><a href="/about" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">{{ __('About Us') }}</a></li>
+                            <li><a href="/services" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">{{ __('Services') }}</a></li>
+                            <li><a href="/blog" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">{{ __('Blog/Insights') }}</a></li>
+                            <li><a href="/contact" class="text-neutral-300 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block">{{ __('Contact') }}</a></li>
                         </ul>
                     </div>
 
                     <!-- Contact Info -->
                     <div>
-                        <h3 class="text-xl font-semibold mb-6 text-white">Get in Touch</h3>
+                        <h3 class="text-xl font-semibold mb-6 text-white">{{ __('Get in Touch') }}</h3>
                         <ul class="space-y-3">
                             <li class="flex items-center space-x-3">
                                 <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
-                                <a href="mailto:info@digitall.com" class="text-neutral-300 hover:text-white transition-colors duration-200">info@digitall.com</a>
+                                <a href="mailto:info@digitall.com" class="text-neutral-300 hover:text-white transition-colors duration-200">{{ __('info@digitall.com') }}</a>
                             </li>
                             <li class="flex items-center space-x-3">
                                 <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                                 </svg>
-                                <a href="https://www.digitall.com" class="text-neutral-300 hover:text-white transition-colors duration-200">www.digitall.com</a>
+                                <a href="https://www.digitall.com" class="text-neutral-300 hover:text-white transition-colors duration-200">{{ __('www.digitall.com') }}</a>
                             </li>
                         </ul>
                     </div>
@@ -259,10 +254,10 @@
                 
                 <div class="mt-12 pt-8 border-t border-neutral-700">
                     <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
-                        <p class="text-neutral-400">&copy; 2025 DigitAll. All rights reserved.</p>
+                        <p class="text-neutral-400">{{ __('© 2025 DigitAll. All rights reserved.') }}</p>
                         <div class="flex space-x-6">
-                            <span class="text-sm text-neutral-400">#InnovationMeetsSustainability</span>
-                            <span class="text-sm text-neutral-400">#FutureOfTech</span>
+                            <span class="text-sm text-neutral-400">{{ __('#InnovationMeetsSustainability') }}</span>
+                            <span class="text-sm text-neutral-400">{{ __('#FutureOfTech') }}</span>
                         </div>
                     </div>
                 </div>
