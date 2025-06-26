@@ -1,2 +1,98 @@
+# Robots.txt for Digit-all Laravel Application
+# Last updated: 2024
+
+# Allow all search engines to crawl the site
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow sensitive and unnecessary directories
+Disallow: /admin/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /tests/
+Disallow: /app/
+Disallow: /lang/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /artisan
+Disallow: /phpunit.xml
+Disallow: /.htaccess
+Disallow: /favicon.ico
+
+# Disallow common Laravel paths that shouldn't be indexed
+Disallow: login
+Disallow: register
+Disallow: /password/
+Disallow: /email/
+Disallow: /logout
+Disallow: /profile/
+Disallow: /settings/
+Disallow: /dashboard/
+Disallow: /admin-panel/
+
+# Disallow temporary and cache files
+Disallow: /tmp/
+Disallow: /cache/
+Disallow: /logs/
+Disallow: /temp/
+
+# Disallow search and filter pages to prevent duplicate content
+Disallow: /*?search=
+Disallow: /*?filter=
+Disallow: /*?sort=
+Disallow: /*?page=
+Disallow: /*?q=
+
+# Allow important assets
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /build/
+Allow: /fonts/
+
+# Set crawl delay (optional - adjust based on server capacity)
+Crawl-delay: 1
+
+# Sitemap location (uncomment and update with your actual sitemap URL)
+Sitemap: https://digit--all.com
+
+# Additional rules for specific bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Block archive.org (optional - remove if you want your site archived)
+User-agent: ia_archiver
+Disallow: /
