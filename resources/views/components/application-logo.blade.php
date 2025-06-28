@@ -1,5 +1,5 @@
-<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" class="text-primary"
-      stroke="none" fill="currentColor" viewBox="0 0 375 350">
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" class="bg-primary"
+      stroke="none" fill="green" viewBox="0 0 375 350">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
     d="m200 0a175 175 0 0 1 0 350h-50-100v-150h50v-50h50v100h50a75 75 0 0 0 0-150h-100v-50h50v-50m-50 50v-50h-50v50m0 0h-50v50h50m0 0v50h50v-50m0 0"
     />
