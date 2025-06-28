@@ -45,7 +45,8 @@ class ServiceResource extends Resource
                     ->required(),
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
-                    ->directory('services'),
+                    ->disk('local')
+                    ->directory('services_image'),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
                 Forms\Components\KeyValue::make('metadata')

@@ -22,7 +22,8 @@
                 <!-- Service Image -->
                 <div class="relative">
                     @if($service->image_path)
-                        <img src="{{ asset('storage/' . $service->image_path) }}" alt="{{ $service->name }}" class="w-full h-64 object-cover rounded-xl">
+                        {{ asset('storage/' . $service->image_path) }}
+                        <img src="{{ asset($service->image_path) }}" alt="{{ $service->name }}" class="w-full h-64 object-cover rounded-xl">
                     @else
                         <div class="w-full h-64 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center">
                             <svg class="w-16 h-16 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
