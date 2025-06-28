@@ -50,9 +50,90 @@
                             {{ __('Blog/Insights') }}
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full transition-all duration-300"></span>
                         </a>
-                        <a href="/contact" class="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-medium hover:shadow-large transform hover:-translate-y-0.5">
-                            {{ __('Get Started') }}
-                        </a>
+                        
+                        @auth
+                            <!-- Authenticated User Menu -->
+                            <div class="relative" x-data="{ isUserOpen: false }">
+                                <button @click="isUserOpen = !isUserOpen" class="flex items-center space-x-2 text-neutral-600 hover:text-primary-600 transition-colors duration-200">
+                                    <div class="w-8 h-8 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center">
+                                        <span class="text-primary-600 font-semibold text-sm">{{ substr(auth()->user()->name, 0, 1) }}</span>
+                                    </div>
+                                    <span class="hidden sm:block text-sm font-medium">{{ auth()->user()->name }}</span>
+                                    <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': isUserOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </button>
+                                
+                                <!-- User dropdown -->
+                                <div x-show="isUserOpen" 
+                                    @click.away="isUserOpen = false"
+                                    x-transition:enter="transition ease-out duration-200" 
+                                    x-transition:enter-start="opacity-0 transform scale-95 -translate-y-2" 
+                                    x-transition:enter-end="opacity-100 transform scale-100 translate-y-0" 
+                                    x-transition:leave="transition ease-in duration-150" 
+                                    x-transition:leave-start="opacity-100 transform scale-100 translate-y-0" 
+                                    x-transition:leave-end="opacity-0 transform scale-95 -translate-y-2"
+                                    class="absolute right-0 mt-2 w-56 bg-white/95 backdrop-blur-xl rounded-xl shadow-large border border-neutral-200/50 py-2 z-50">
+                                    
+                                    <div class="px-4 py-3 border-b border-neutral-200">
+                                        <p class="text-sm font-medium text-neutral-900">{{ auth()->user()->name }}</p>
+                                        <p class="text-xs text-neutral-500">{{ auth()->user()->email }}</p>
+                                    </div>
+                                    
+                                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                                        </svg>
+                                        <span>Dashboard</span>
+                                    </a>
+                                    
+                                    <a href="{{ route('projects.index') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        <span>My Projects</span>
+                                    </a>
+                                    
+                                    <a href="{{ route('messages.index') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                        </svg>
+                                        <span>Messages</span>
+                                        @if(auth()->user()->unreadMessages()->count() > 0)
+                                            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">{{ auth()->user()->unreadMessages()->count() }}</span>
+                                        @endif
+                                    </a>
+                                    
+                                    <a href="{{ route('profile.edit') }}" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-primary-600 hover:bg-neutral-50 transition-all duration-200">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                        </svg>
+                                        <span>Profile</span>
+                                    </a>
+                                    
+                                    <div class="border-t border-neutral-200 mt-2 pt-2">
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="flex items-center space-x-3 px-4 py-2 text-neutral-600 hover:text-red-600 hover:bg-red-50 transition-all duration-200 w-full text-left">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                                </svg>
+                                                <span>Logout</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <!-- Guest User -->
+                            <a href="/contact" class="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-medium hover:shadow-large transform hover:-translate-y-0.5">
+                                {{ __('Get Started') }}
+                            </a>
+                            <a href="{{ route('login') }}" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200">
+                                {{ __('Login') }}
+                            </a>
+                        @endauth
+                        
                         <!-- linked to ShabbyTech Website on same ip but different port 81 -->
                         <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="text-neutral-600 hover:text-primary-600 font-medium transition-all duration-200 relative group">
                             {{ __('ShabbyTech') }}
@@ -150,6 +231,70 @@
                         <a href="/contact" class="block py-3 text-primary-600 font-medium">{{ __('Contact') }}</a>
                         <a href="http://{{ env('SHABBY_URL') }}" target="_blank" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">{{ __('ShabbyTech') }}</a>
                         
+                        @auth
+                            <!-- Mobile User Menu -->
+                            <div class="pt-4 border-t border-neutral-200">
+                                <div class="flex items-center space-x-3 mb-4">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center">
+                                        <span class="text-primary-600 font-semibold">{{ substr(auth()->user()->name, 0, 1) }}</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">{{ auth()->user()->name }}</p>
+                                        <p class="text-sm text-neutral-500">{{ auth()->user()->email }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-2">
+                                    <a href="{{ route('dashboard') }}" class="flex items-center space-x-3 py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                                        </svg>
+                                        <span>Dashboard</span>
+                                    </a>
+                                    
+                                    <a href="{{ route('projects.index') }}" class="flex items-center space-x-3 py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                        </svg>
+                                        <span>My Projects</span>
+                                    </a>
+                                    
+                                    <a href="{{ route('messages.index') }}" class="flex items-center space-x-3 py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                        </svg>
+                                        <span>Messages</span>
+                                        @if(auth()->user()->unreadMessages()->count() > 0)
+                                            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">{{ auth()->user()->unreadMessages()->count() }}</span>
+                                        @endif
+                                    </a>
+                                    
+                                    <a href="{{ route('profile.edit') }}" class="flex items-center space-x-3 py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                        </svg>
+                                        <span>Profile</span>
+                                    </a>
+                                    
+                                    <form method="POST" action="{{ route('logout') }}" class="pt-2 border-t border-neutral-200">
+                                        @csrf
+                                        <button type="submit" class="flex items-center space-x-3 py-3 text-neutral-600 hover:text-red-600 font-medium transition-colors duration-200 w-full text-left">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                            </svg>
+                                            <span>Logout</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        @else
+                            <!-- Mobile Guest Menu -->
+                            <div class="pt-4 border-t border-neutral-200">
+                                <a href="{{ route('login') }}" class="block py-3 text-neutral-600 hover:text-primary-600 font-medium transition-colors duration-200">{{ __('Login') }}</a>
+                                <a href="{{ route('register') }}" class="block py-3 text-primary-600 font-medium">{{ __('Register') }}</a>
+                            </div>
+                        @endauth
+                        
                         <!-- Mobile Language Selector -->
                         <div class="pt-4 border-t border-neutral-200">
                             <h4 class="text-sm font-semibold text-neutral-700 mb-3">{{ __('Language') }}</h4>
@@ -240,13 +385,13 @@
                                 <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
-                                <a href="mailto:info@digitall.com" class="text-neutral-300 hover:text-white transition-colors duration-200">{{ __('info@digitall.com') }}</a>
+                                <a href="mailto:info@digit--all.com" class="text-neutral-300 hover:text-white transition-colors duration-200">{{ __('info@digit--all.com') }}</a>
                             </li>
                             <li class="flex items-center space-x-3">
                                 <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                                 </svg>
-                                <a href="https://www.digitall.com" class="text-neutral-300 hover:text-white transition-colors duration-200">{{ __('www.digitall.com') }}</a>
+                                <a href="https://www.digitall.com" class="text-neutral-300 hover:text-white transition-colors duration-200">{{ __('www.digit--all.com') }}</a>
                             </li>
                         </ul>
                     </div>

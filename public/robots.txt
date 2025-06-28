@@ -31,8 +31,8 @@ Disallow: /.htaccess
 Disallow: /favicon.ico
 
 # Disallow common Laravel paths that shouldn't be indexed
-Disallow: login
-Disallow: register
+Disallow: /login
+Disallow: /register
 Disallow: /password/
 Disallow: /email/
 Disallow: /logout
@@ -64,8 +64,8 @@ Allow: /fonts/
 # Set crawl delay (optional - adjust based on server capacity)
 Crawl-delay: 1
 
-# Sitemap location (uncomment and update with your actual sitemap URL)
-Sitemap: https://digit--all.com
+# Sitemap location
+Sitemap: https://digit-all.com/sitemap.xml
 
 # Additional rules for specific bots
 User-agent: Googlebot
