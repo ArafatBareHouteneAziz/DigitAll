@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="DigitAll - Innovative Tech Solutions for a Sustainable Future">
-        <title>{{ config('app.name', 'DigitAll') }} - @yield('title')</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+        <!-- Primary Meta Tags -->
+        <title>{{ config('app.name', 'DigitAll') }}@hasSection('title') - @yield('title')@endif</title>
+        <meta name="title" content="{{ config('app.name', 'DigitAll') }}@hasSection('title') - @yield('title')@endif">
+        <meta name="description" content="@yield('meta_description', 'DigitAll - Innovative Tech Solutions for a Sustainable Future. We combine cutting-edge technology with environmental responsibility.')">
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:title" content="{{ config('app.name', 'DigitAll') }}@hasSection('title') - @yield('title')@endif">
+        <meta property="og:description" content="@yield('meta_description', 'DigitAll - Innovative Tech Solutions for a Sustainable Future. We combine cutting-edge technology with environmental responsibility.')">
+        <meta property="og:image" content="@yield('meta_image', asset('images/og-image.jpg'))">
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url()->current() }}">
+        <meta property="twitter:title" content="{{ config('app.name', 'DigitAll') }}@hasSection('title') - @yield('title')@endif">
+        <meta property="twitter:description" content="@yield('meta_description', 'DigitAll - Innovative Tech Solutions for a Sustainable Future. We combine cutting-edge technology with environmental responsibility.')">
+        <meta property="twitter:image" content="@yield('meta_image', asset('images/og-image.jpg'))">
 
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -22,8 +40,64 @@
 
         <!-- Alpine.js -->
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+        <!-- Custom Styles -->
+        <style>
+            [x-cloak] { display: none !important; }
+            
+            /* Smooth Scrolling */
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            /* Typography */
+            @layer base {
+                h1 { @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight; }
+                h2 { @apply text-3xl md:text-4xl font-bold leading-tight; }
+                h3 { @apply text-2xl md:text-3xl font-bold leading-tight; }
+                h4 { @apply text-xl md:text-2xl font-bold leading-tight; }
+                p { @apply text-base md:text-lg leading-relaxed; }
+            }
+            
+            /* Custom Scrollbar */
+            ::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: theme('colors.neutral.100');
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: theme('colors.primary.200');
+                border-radius: 5px;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+                background: theme('colors.primary.300');
+            }
+        </style>
     </head>
-    <body class="font-sans antialiased bg-neutral-50 text-neutral-900">
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/687515b07f202b19181ea692/1j04lpf33';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <body class="font-sans antialiased bg-neutral-50 text-neutral-900 min-h-screen flex flex-col">
+        <!-- Skip to main content for accessibility -->
+        <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-lg z-50">
+            {{ __('Skip to main content') }}
+        </a>
+
         <!-- Header -->
         <header class="bg-white/80 backdrop-blur-xl fixed w-full top-0 z-50 border-b border-neutral-200/50 shadow-soft">
             <nav class="container mx-auto px-6 py-4" x-data="{ isOpen: false }">
@@ -331,12 +405,47 @@
         </header>
 
         <!-- Main Content -->
-        <main class="pt-20">
+        <main id="main-content" class="flex-grow pt-20">
+            <!-- Flash Messages -->
+            @if (session('success'))
+                <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="fixed top-24 right-4 z-50">
+                    <div class="bg-green-50 text-green-800 px-4 py-3 rounded-lg shadow-lg border border-green-100 flex items-center space-x-3">
+                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <p>{{ session('success') }}</p>
+                        <button @click="show = false" class="text-green-600 hover:text-green-800">
+                            <span class="sr-only">Dismiss</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="fixed top-24 right-4 z-50">
+                    <div class="bg-red-50 text-red-800 px-4 py-3 rounded-lg shadow-lg border border-red-100 flex items-center space-x-3">
+                        <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                        <p>{{ session('error') }}</p>
+                        <button @click="show = false" class="text-red-600 hover:text-red-800">
+                            <span class="sr-only">Dismiss</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
         </main>
 
         <!-- Footer -->
-        <footer class="bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white relative overflow-hidden">
+        <footer class="bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white relative overflow-hidden mt-auto">
             <!-- Background Pattern -->
             <div class="absolute inset-0 bg-hero-pattern opacity-5"></div>
             
@@ -416,5 +525,23 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Loading Indicator -->
+        <div x-data="{ loading: false }" 
+             x-show="loading" 
+             x-on:loading.window="loading = true" 
+             x-on:loaded.window="loading = false"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
+             style="display: none;">
+            <div class="bg-white rounded-xl p-4 shadow-xl">
+                <div class="animate-spin rounded-full h-12 w-12 border-4 border-primary-400 border-t-transparent"></div>
+            </div>
+        </div>
     </body>
 </html>

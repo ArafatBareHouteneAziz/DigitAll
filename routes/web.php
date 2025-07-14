@@ -24,11 +24,11 @@ Route::get('/services', function () {
 
 Route::get('/services/{service:slug}', [ServiceController::class, 'show'])->name('services.show');
 
-Route::get('/blog', function () {
-    return view('blog');
-});
-
-Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
+// Blog routes
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/category/{slug}', [BlogController::class, 'category'])->name('blog.category');
+Route::get('/blog/tag/{slug}', [BlogController::class, 'tag'])->name('blog.tag');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
