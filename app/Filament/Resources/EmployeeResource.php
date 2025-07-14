@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\EmployeeResource\Pages;
+use App\Filament\Resources\EmployeeResource\RelationManagers;
+use App\Models\Employee;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,15 +14,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
 
-class UserResource extends Resource
+class EmployeeResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Employee::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     
     protected static ?string $navigationGroup = 'User Management';
     
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
     
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -76,9 +76,34 @@ class UserResource extends Resource
                             ->placeholder('Leave empty if not verified'),
                         
                         Forms\Components\Toggle::make('is_active')
-                            ->label('Active Account')
+                            ->label('Active Employee')
                             ->default(true)
-                            ->helperText('Only active accounts can access the system'),
+                            ->helperText('Only active employees can access the system'),
+                    ])->columns(2),
+                
+                Forms\Components\Section::make('Employee Details')
+                    ->schema([
+                        Forms\Components\Select::make('department')
+                            ->options([
+                                'development' => 'Development',
+                                'design' => 'Design',
+                                'marketing' => 'Marketing',
+                                'sales' => 'Sales',
+                                'support' => 'Support',
+                                'management' => 'Management',
+                            ])
+                            ->placeholder('Select department'),
+                        
+                        Forms\Components\TextInput::make('position')
+                            ->maxLength(255)
+                            ->placeholder('Enter job position'),
+                        
+                        Forms\Components\TextInput::make('employee_id')
+                            ->maxLength(50)
+                            ->placeholder('Enter employee ID'),
+                        
+                        Forms\Components\DatePicker::make('hire_date')
+                            ->placeholder('Select hire date'),
                     ])->columns(2),
                 
                 Forms\Components\Section::make('Additional Information')
@@ -95,7 +120,7 @@ class UserResource extends Resource
                             ->imageResizeTargetWidth('200')
                             ->imageResizeTargetHeight('200')
                             ->disk('public')
-                            ->directory('avatars')
+                            ->directory('employee-avatars')
                             ->visibility('public')
                             ->helperText('Upload profile picture'),
                         
@@ -103,7 +128,7 @@ class UserResource extends Resource
                             ->keyLabel('Key')
                             ->valueLabel('Value')
                             ->columnSpanFull()
-                            ->helperText('Add additional user metadata'),
+                            ->helperText('Add additional employee metadata'),
                     ])->columns(1),
             ]);
     }
@@ -132,10 +157,34 @@ class UserResource extends Resource
                     ->sortable()
                     ->toggleable(),
                 
-                Tables\Columns\TextColumn::make('address')
+                Tables\Columns\TextColumn::make('department')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'development' => 'info',
+                        'design' => 'warning',
+                        'marketing' => 'success',
+                        'sales' => 'danger',
+                        'support' => 'gray',
+                        'management' => 'primary',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => ucfirst($state))
+                    ->searchable()
+                    ->sortable(),
+                
+                Tables\Columns\TextColumn::make('position')
                     ->searchable()
                     ->sortable()
-                    ->limit(50)
+                    ->toggleable(),
+                
+                Tables\Columns\TextColumn::make('employee_id')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+                
+                Tables\Columns\TextColumn::make('hire_date')
+                    ->date()
+                    ->sortable()
                     ->toggleable(),
                 
                 Tables\Columns\IconColumn::make('email_verified_at')
@@ -165,6 +214,18 @@ class UserResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('department')
+                    ->options([
+                        'development' => 'Development',
+                        'design' => 'Design',
+                        'marketing' => 'Marketing',
+                        'sales' => 'Sales',
+                        'support' => 'Support',
+                        'management' => 'Management',
+                    ])
+                    ->multiple()
+                    ->preload(),
+                
                 Tables\Filters\TernaryFilter::make('email_verified_at')
                     ->label('Email Verification'),
                 
@@ -199,23 +260,23 @@ class UserResource extends Resource
                     Tables\Actions\Action::make('verify_email')
                         ->icon('heroicon-o-check-circle')
                         ->color('success')
-                        ->action(function (User $record): void {
+                        ->action(function (Employee $record): void {
                             $record->update(['email_verified_at' => now()]);
                         })
                         ->requiresConfirmation()
                         ->modalHeading('Verify Email')
                         ->modalDescription('Are you sure you want to mark this email as verified?')
                         ->modalSubmitActionLabel('Yes, verify email')
-                        ->visible(fn (User $record): bool => !$record->email_verified_at),
+                        ->visible(fn (Employee $record): bool => !$record->email_verified_at),
                     Tables\Actions\Action::make('toggle_status')
                         ->icon('heroicon-o-arrow-path')
                         ->color('warning')
-                        ->action(function (User $record): void {
+                        ->action(function (Employee $record): void {
                             $record->update(['is_active' => !$record->is_active]);
                         })
                         ->requiresConfirmation()
-                        ->modalHeading('Toggle Account Status')
-                        ->modalDescription('Are you sure you want to change the active status of this account?')
+                        ->modalHeading('Toggle Employee Status')
+                        ->modalDescription('Are you sure you want to change the active status of this employee?')
                         ->modalSubmitActionLabel('Yes, toggle status'),
                 ])
             ])
@@ -267,10 +328,10 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'view' => Pages\ViewUser::route('/{record}'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListEmployees::route('/'),
+            'create' => Pages\CreateEmployee::route('/create'),
+            'view' => Pages\ViewEmployee::route('/{record}'),
+            'edit' => Pages\EditEmployee::route('/{record}/edit'),
         ];
     }
     

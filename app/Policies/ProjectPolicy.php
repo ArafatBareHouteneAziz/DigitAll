@@ -4,7 +4,9 @@ namespace App\Policies;
 
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Employee;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class ProjectPolicy
 {
@@ -13,7 +15,7 @@ class ProjectPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(Authenticatable $user): bool
     {
         return true;
     }
@@ -21,15 +23,23 @@ class ProjectPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Project $project): bool
+    public function view(Authenticatable $user, Project $project): bool
     {
-        return $user->id === $project->user_id;
+        // Handle both User and Employee models
+        if ($user instanceof User) {
+            return $user->id === $project->user_id;
+        } elseif ($user instanceof Employee) {
+            // For employees, allow access to all projects or implement specific logic
+            return true;
+        }
+        
+        return false;
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(Authenticatable $user): bool
     {
         return true;
     }
@@ -37,32 +47,64 @@ class ProjectPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Project $project): bool
+    public function update(Authenticatable $user, Project $project): bool
     {
-        return $user->id === $project->user_id;
+        // Handle both User and Employee models
+        if ($user instanceof User) {
+            return $user->id === $project->user_id;
+        } elseif ($user instanceof Employee) {
+            // For employees, allow access to all projects or implement specific logic
+            return true;
+        }
+        
+        return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Project $project): bool
+    public function delete(Authenticatable $user, Project $project): bool
     {
-        return $user->id === $project->user_id;
+        // Handle both User and Employee models
+        if ($user instanceof User) {
+            return $user->id === $project->user_id;
+        } elseif ($user instanceof Employee) {
+            // For employees, allow access to all projects or implement specific logic
+            return true;
+        }
+        
+        return false;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Project $project): bool
+    public function restore(Authenticatable $user, Project $project): bool
     {
-        return $user->id === $project->user_id;
+        // Handle both User and Employee models
+        if ($user instanceof User) {
+            return $user->id === $project->user_id;
+        } elseif ($user instanceof Employee) {
+            // For employees, allow access to all projects or implement specific logic
+            return true;
+        }
+        
+        return false;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Project $project): bool
+    public function forceDelete(Authenticatable $user, Project $project): bool
     {
-        return $user->id === $project->user_id;
+        // Handle both User and Employee models
+        if ($user instanceof User) {
+            return $user->id === $project->user_id;
+        } elseif ($user instanceof Employee) {
+            // For employees, allow access to all projects or implement specific logic
+            return true;
+        }
+        
+        return false;
     }
 } 
