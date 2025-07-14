@@ -60,3 +60,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # DigitAll
+
+## Livewire Assets
+
+If you are using Livewire, make sure to publish the Livewire assets after installing dependencies or when deploying:
+
+```bash
+php artisan vendor:publish --force --tag=livewire:assets
+```
