@@ -18,7 +18,7 @@ class ProfileResource extends Resource
     protected static ?string $model = Profile::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
-    
+
     protected static ?string $navigationGroup = 'User Management';
     
     protected static ?int $navigationSort = 3;
@@ -30,9 +30,9 @@ class ProfileResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make('User Information')
-                    ->schema([
-                        Forms\Components\Select::make('user_id')
-                            ->relationship('user', 'name')
+            ->schema([
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
                             ->required()
                             ->searchable()
                             ->preload()
@@ -41,13 +41,13 @@ class ProfileResource extends Resource
                 
                 Forms\Components\Section::make('Contact Information')
                     ->schema([
-                        Forms\Components\TextInput::make('phone_number')
-                            ->tel()
+                Forms\Components\TextInput::make('phone_number')
+                    ->tel()
                             ->maxLength(255)
                             ->placeholder('Enter phone number'),
                         
-                        Forms\Components\TextInput::make('website')
-                            ->url()
+                Forms\Components\TextInput::make('website')
+                    ->url()
                             ->maxLength(255)
                             ->placeholder('Enter website URL')
                             ->helperText('Include http:// or https://'),
@@ -72,8 +72,8 @@ class ProfileResource extends Resource
                 
                 Forms\Components\Section::make('Media & Social Links')
                     ->schema([
-                        Forms\Components\FileUpload::make('profile_photo_path')
-                            ->image()
+                Forms\Components\FileUpload::make('profile_photo_path')
+                    ->image()
                             ->imageEditor()
                             ->imageCropAspectRatio('1:1')
                             ->imageResizeTargetWidth('400')
@@ -83,9 +83,9 @@ class ProfileResource extends Resource
                             ->visibility('public')
                             ->helperText('Upload profile photo (recommended: 400x400px)'),
                         
-                        Forms\Components\KeyValue::make('social_links')
-                            ->keyLabel('Platform')
-                            ->valueLabel('URL')
+                Forms\Components\KeyValue::make('social_links')
+                    ->keyLabel('Platform')
+                    ->valueLabel('URL')
                             ->reorderable()
                             ->helperText('Add your social media links (e.g., LinkedIn, Twitter, GitHub)'),
                     ])->columns(1),

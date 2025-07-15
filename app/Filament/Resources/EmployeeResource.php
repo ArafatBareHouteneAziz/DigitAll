@@ -31,14 +31,14 @@ class EmployeeResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make('Basic Information')
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
+            ->schema([
+                Forms\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255)
                             ->placeholder('Enter full name'),
                         
-                        Forms\Components\TextInput::make('email')
-                            ->email()
+                Forms\Components\TextInput::make('email')
+                    ->email()
                             ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true)
@@ -56,8 +56,8 @@ class EmployeeResource extends Resource
                 
                 Forms\Components\Section::make('Account Settings')
                     ->schema([
-                        Forms\Components\TextInput::make('password')
-                            ->password()
+                Forms\Components\TextInput::make('password')
+                    ->password()
                             ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                             ->required(fn (string $context): bool => $context === 'create')
                             ->minLength(8)

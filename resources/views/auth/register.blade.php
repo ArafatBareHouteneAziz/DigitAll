@@ -18,10 +18,10 @@
 
             <div class="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-8">
                 <form method="POST" action="{{ route('register') }}" class="space-y-6">
-                    @csrf
+        @csrf
 
-                    <!-- Name -->
-                    <div>
+        <!-- Name -->
+        <div>
                         <x-input-label for="name" :value="__('Full Name')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
                         <div class="mt-1 relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -39,10 +39,10 @@
                                 autocomplete="name" 
                                 placeholder="Enter your full name" />
                         </div>
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                    </div>
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
 
-                    <!-- Email Address -->
+        <!-- Email Address -->
                     <div>
                         <x-input-label for="email" :value="__('Email Address')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
                         <div class="mt-1 relative">
@@ -60,10 +60,10 @@
                                 autocomplete="username" 
                                 placeholder="Enter your email address" />
                         </div>
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
 
-                    <!-- Password -->
+        <!-- Password -->
                     <div>
                         <x-input-label for="password" :value="__('Password')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
                         <div class="mt-1 relative">
@@ -74,8 +74,8 @@
                             </div>
                             <x-text-input id="password" 
                                 class="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400" 
-                                type="password"
-                                name="password"
+                            type="password"
+                            name="password"
                                 required 
                                 autocomplete="new-password" 
                                 placeholder="Create a strong password" />
@@ -88,10 +88,10 @@
                                 </svg>
                             </button>
                         </div>
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
 
-                    <!-- Confirm Password -->
+        <!-- Confirm Password -->
                     <div>
                         <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
                         <div class="mt-1 relative">
@@ -102,7 +102,7 @@
                             </div>
                             <x-text-input id="password_confirmation" 
                                 class="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400" 
-                                type="password"
+                            type="password"
                                 name="password_confirmation" 
                                 required 
                                 autocomplete="new-password" 
@@ -116,8 +116,8 @@
                                 </svg>
                             </button>
                         </div>
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    </div>
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
 
                     <!-- Terms and Conditions -->
                     <div class="flex items-center">

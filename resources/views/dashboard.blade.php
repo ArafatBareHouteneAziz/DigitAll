@@ -2,9 +2,9 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <div>
-                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    {{ __('Dashboard') }}
-                </h2>
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
                 <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
                     Welcome back! Here's what's happening with your projects.
                 </p>

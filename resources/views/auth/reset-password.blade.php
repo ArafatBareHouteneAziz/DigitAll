@@ -18,13 +18,13 @@
 
             <div class="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-8">
                 <form method="POST" action="{{ route('password.store') }}" class="space-y-6">
-                    @csrf
+        @csrf
 
-                    <!-- Password Reset Token -->
-                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
+        <!-- Password Reset Token -->
+        <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                    <!-- Email Address -->
-                    <div>
+        <!-- Email Address -->
+        <div>
                         <x-input-label for="email" :value="__('Email Address')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
                         <div class="mt-1 relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -42,10 +42,10 @@
                                 autocomplete="username" 
                                 placeholder="Enter your email address" />
                         </div>
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
 
-                    <!-- Password -->
+        <!-- Password -->
                     <div>
                         <x-input-label for="password" :value="__('New Password')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
                         <div class="mt-1 relative">
@@ -70,10 +70,10 @@
                                 </svg>
                             </button>
                         </div>
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
 
-                    <!-- Confirm Password -->
+        <!-- Confirm Password -->
                     <div>
                         <x-input-label for="password_confirmation" :value="__('Confirm New Password')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
                         <div class="mt-1 relative">
@@ -98,8 +98,8 @@
                                 </svg>
                             </button>
                         </div>
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    </div>
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
 
                     <!-- Password Strength Indicator -->
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
@@ -135,7 +135,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </span>
-                            {{ __('Reset Password') }}
+                {{ __('Reset Password') }}
                         </button>
                     </div>
 

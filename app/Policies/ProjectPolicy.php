@@ -27,7 +27,7 @@ class ProjectPolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $project->user_id;
+        return $user->id === $project->user_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all projects or implement specific logic
             return true;
@@ -51,7 +51,7 @@ class ProjectPolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $project->user_id;
+        return $user->id === $project->user_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all projects or implement specific logic
             return true;
@@ -67,7 +67,7 @@ class ProjectPolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $project->user_id;
+        return $user->id === $project->user_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all projects or implement specific logic
             return true;
@@ -83,7 +83,7 @@ class ProjectPolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $project->user_id;
+        return $user->id === $project->user_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all projects or implement specific logic
             return true;
@@ -99,7 +99,7 @@ class ProjectPolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $project->user_id;
+        return $user->id === $project->user_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all projects or implement specific logic
             return true;

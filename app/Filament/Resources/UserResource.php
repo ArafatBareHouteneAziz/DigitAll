@@ -19,7 +19,7 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
-    
+
     protected static ?string $navigationGroup = 'User Management';
     
     protected static ?int $navigationSort = 1;
@@ -31,15 +31,15 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make('Basic Information')
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required()
+            ->schema([
+                Forms\Components\TextInput::make('name')
+                    ->required()
                             ->maxLength(255)
                             ->placeholder('Enter full name'),
                         
-                        Forms\Components\TextInput::make('email')
-                            ->email()
-                            ->required()
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true)
                             ->placeholder('Enter email address'),
@@ -56,10 +56,10 @@ class UserResource extends Resource
                 
                 Forms\Components\Section::make('Account Settings')
                     ->schema([
-                        Forms\Components\TextInput::make('password')
-                            ->password()
-                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                            ->required(fn (string $context): bool => $context === 'create')
+                Forms\Components\TextInput::make('password')
+                    ->password()
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->required(fn (string $context): bool => $context === 'create')
                             ->minLength(8)
                             ->maxLength(255)
                             ->placeholder('Enter password')

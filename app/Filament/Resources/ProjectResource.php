@@ -18,7 +18,7 @@ class ProjectResource extends Resource
     protected static ?string $model = Project::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
-    
+
     protected static ?string $navigationGroup = 'Business Management';
     
     protected static ?int $navigationSort = 2;
@@ -36,27 +36,27 @@ class ProjectResource extends Resource
                             ->maxLength(255)
                             ->placeholder('Enter project title'),
                         
-                        Forms\Components\Select::make('user_id')
-                            ->relationship('user', 'name')
-                            ->required()
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->required()
                             ->searchable()
                             ->preload()
                             ->placeholder('Select client'),
                         
-                        Forms\Components\Select::make('service_id')
-                            ->relationship('service', 'name')
-                            ->required()
+                Forms\Components\Select::make('service_id')
+                    ->relationship('service', 'name')
+                    ->required()
                             ->searchable()
                             ->preload()
                             ->placeholder('Select service'),
                         
-                        Forms\Components\Select::make('status')
-                            ->options([
-                                'pending' => 'Pending',
-                                'in_progress' => 'In Progress',
-                                'completed' => 'Completed',
-                                'cancelled' => 'Cancelled',
-                            ])
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'in_progress' => 'In Progress',
+                        'completed' => 'Completed',
+                        'cancelled' => 'Cancelled',
+                    ])
                             ->required()
                             ->default('pending')
                             ->placeholder('Select status'),
@@ -89,8 +89,8 @@ class ProjectResource extends Resource
                 
                 Forms\Components\Section::make('Timeline & Budget')
                     ->schema([
-                        Forms\Components\TextInput::make('budget')
-                            ->numeric()
+                Forms\Components\TextInput::make('budget')
+                    ->numeric()
                             ->prefix('$')
                             ->minValue(0)
                             ->step(0.01)
@@ -122,15 +122,15 @@ class ProjectResource extends Resource
                 
                 Forms\Components\Section::make('Attachments & Metadata')
                     ->schema([
-                        Forms\Components\FileUpload::make('attachments')
-                            ->multiple()
+                Forms\Components\FileUpload::make('attachments')
+                    ->multiple()
                             ->directory('project-attachments')
                             ->disk('public')
                             ->visibility('public')
                             ->helperText('Upload project-related files'),
                         
-                        Forms\Components\KeyValue::make('metadata')
-                            ->keyLabel('Key')
+                Forms\Components\KeyValue::make('metadata')
+                    ->keyLabel('Key')
                             ->valueLabel('Value')
                             ->columnSpanFull()
                             ->helperText('Add additional project metadata'),

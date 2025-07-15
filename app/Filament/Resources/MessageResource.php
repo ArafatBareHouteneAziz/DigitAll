@@ -18,7 +18,7 @@ class MessageResource extends Resource
     protected static ?string $model = Message::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
-    
+
     protected static ?string $navigationGroup = 'Communication';
     
     protected static ?int $navigationSort = 1;
@@ -36,22 +36,22 @@ class MessageResource extends Resource
                             ->maxLength(255)
                             ->placeholder('Enter message subject'),
                         
-                        Forms\Components\Select::make('sender_id')
-                            ->relationship('sender', 'name')
-                            ->required()
+                Forms\Components\Select::make('sender_id')
+                    ->relationship('sender', 'name')
+                    ->required()
                             ->searchable()
                             ->preload()
                             ->placeholder('Select sender'),
                         
-                        Forms\Components\Select::make('receiver_id')
-                            ->relationship('receiver', 'name')
-                            ->required()
+                Forms\Components\Select::make('receiver_id')
+                    ->relationship('receiver', 'name')
+                    ->required()
                             ->searchable()
                             ->preload()
                             ->placeholder('Select receiver'),
                         
-                        Forms\Components\Select::make('project_id')
-                            ->relationship('project', 'title')
+                Forms\Components\Select::make('project_id')
+                    ->relationship('project', 'title')
                             ->searchable()
                             ->preload()
                             ->placeholder('Select related project (optional)'),
@@ -59,8 +59,8 @@ class MessageResource extends Resource
                 
                 Forms\Components\Section::make('Message Content')
                     ->schema([
-                        Forms\Components\RichEditor::make('content')
-                            ->required()
+                Forms\Components\RichEditor::make('content')
+                    ->required()
                             ->columnSpanFull()
                             ->toolbarButtons([
                                 'bold',
@@ -76,8 +76,8 @@ class MessageResource extends Resource
                             ])
                             ->placeholder('Write your message here...'),
                         
-                        Forms\Components\FileUpload::make('attachments')
-                            ->multiple()
+                Forms\Components\FileUpload::make('attachments')
+                    ->multiple()
                             ->directory('message-attachments')
                             ->disk('public')
                             ->visibility('public')
@@ -253,7 +253,7 @@ class MessageResource extends Resource
                                 $record->update([
                                     'is_read' => false,
                                     'read_at' => null,
-                                ]);
+            ]);
                             });
                         })
                         ->requiresConfirmation(),

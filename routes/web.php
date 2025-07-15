@@ -20,7 +20,7 @@ Route::get('/about', function () {
 
 Route::get('/services', function () {
     return view('services');
-});
+})->name('services.index');
 
 Route::get('/services/{service:slug}', [ServiceController::class, 'show'])->name('services.show');
 

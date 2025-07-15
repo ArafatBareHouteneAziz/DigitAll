@@ -8,11 +8,11 @@
             </div>
             <div>
                 <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    {{ __('Profile Information') }}
-                </h2>
-                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    {{ __("Update your account's profile information and email address.") }}
-                </p>
+            {{ __('Profile Information') }}
+        </h2>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            {{ __("Update your account's profile information and email address.") }}
+        </p>
             </div>
         </div>
     </header>
@@ -84,13 +84,13 @@
                                 <button form="send-verification" 
                                     class="mt-2 inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded-md text-yellow-800 bg-yellow-100 hover:bg-yellow-200 dark:text-yellow-200 dark:bg-yellow-800 dark:hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-colors duration-200">
                                     {{ __('Resend Verification Email') }}
-                                </button>
+                        </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                @if (session('status') === 'verification-link-sent')
+                    @if (session('status') === 'verification-link-sent')
                     <div class="mt-3 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
                         <div class="flex">
                             <div class="flex-shrink-0">
@@ -103,12 +103,12 @@
                                     {{ __('Verification Email Sent') }}
                                 </p>
                                 <p class="mt-1 text-sm text-green-700 dark:text-green-300">
-                                    {{ __('A new verification link has been sent to your email address.') }}
-                                </p>
+                            {{ __('A new verification link has been sent to your email address.') }}
+                        </p>
                             </div>
                         </div>
                     </div>
-                @endif
+                    @endif
             @endif
         </div>
 

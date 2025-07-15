@@ -31,25 +31,25 @@ class ServiceResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make('Basic Information')
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required()
+            ->schema([
+                Forms\Components\TextInput::make('name')
+                    ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn (string $state, callable $set) => $set('slug', Str::slug($state)))
                             ->placeholder('Enter service name'),
                         
-                        Forms\Components\TextInput::make('slug')
+                Forms\Components\TextInput::make('slug')
                             ->maxLength(255)
                             ->unique(ignoreRecord: true)
                             ->placeholder('Auto-generated from name'),
                         
-                        Forms\Components\Select::make('category')
-                            ->options([
-                                'development' => 'Development',
-                                'electronics' => 'Electronics & Robotics',
-                                'consulting' => 'Consulting',
-                            ])
+                Forms\Components\Select::make('category')
+                    ->options([
+                        'development' => 'Development',
+                        'electronics' => 'Electronics & Robotics',
+                        'consulting' => 'Consulting',
+                    ])
                             ->required()
                             ->searchable()
                             ->placeholder('Select category'),
@@ -95,8 +95,8 @@ class ServiceResource extends Resource
                 
                 Forms\Components\Section::make('Media & Additional Information')
                     ->schema([
-                        Forms\Components\FileUpload::make('image_path')
-                            ->image()
+                Forms\Components\FileUpload::make('image_path')
+                    ->image()
                             ->imageEditor()
                             ->imageCropAspectRatio('16:9')
                             ->imageResizeTargetWidth('1920')
@@ -106,8 +106,8 @@ class ServiceResource extends Resource
                             ->visibility('public')
                             ->helperText('Recommended size: 1920x1080px'),
                         
-                        Forms\Components\KeyValue::make('metadata')
-                            ->keyLabel('Key')
+                Forms\Components\KeyValue::make('metadata')
+                    ->keyLabel('Key')
                             ->valueLabel('Value')
                             ->columnSpanFull()
                             ->helperText('Add additional metadata like technologies, delivery time, etc.'),

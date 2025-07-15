@@ -18,17 +18,17 @@
 
             <div class="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-8">
                 <div class="mb-6 text-sm text-gray-600 dark:text-gray-400 text-center">
-                    {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-                </div>
+        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+    </div>
 
-                <!-- Session Status -->
-                <x-auth-session-status class="mb-4" :status="session('status')" />
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
                 <form method="POST" action="{{ route('password.email') }}" class="space-y-6">
-                    @csrf
+        @csrf
 
-                    <!-- Email Address -->
-                    <div>
+        <!-- Email Address -->
+        <div>
                         <x-input-label for="email" :value="__('Email Address')" class="text-sm font-medium text-gray-700 dark:text-gray-300" />
                         <div class="mt-1 relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -45,8 +45,8 @@
                                 autofocus 
                                 placeholder="Enter your email address" />
                         </div>
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
 
                     <!-- Submit Button -->
                     <div>

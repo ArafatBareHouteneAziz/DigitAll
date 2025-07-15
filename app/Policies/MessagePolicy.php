@@ -27,7 +27,7 @@ class MessagePolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $message->sender_id || $user->id === $message->receiver_id;
+        return $user->id === $message->sender_id || $user->id === $message->receiver_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all messages or implement specific logic
             return true;
@@ -51,7 +51,7 @@ class MessagePolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $message->sender_id || $user->id === $message->receiver_id;
+        return $user->id === $message->sender_id || $user->id === $message->receiver_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all messages or implement specific logic
             return true;
@@ -67,7 +67,7 @@ class MessagePolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $message->sender_id || $user->id === $message->receiver_id;
+        return $user->id === $message->sender_id || $user->id === $message->receiver_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all messages or implement specific logic
             return true;
@@ -83,7 +83,7 @@ class MessagePolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $message->sender_id || $user->id === $message->receiver_id;
+        return $user->id === $message->sender_id || $user->id === $message->receiver_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all messages or implement specific logic
             return true;
@@ -99,7 +99,7 @@ class MessagePolicy
     {
         // Handle both User and Employee models
         if ($user instanceof User) {
-            return $user->id === $message->sender_id || $user->id === $message->receiver_id;
+        return $user->id === $message->sender_id || $user->id === $message->receiver_id;
         } elseif ($user instanceof Employee) {
             // For employees, allow access to all messages or implement specific logic
             return true;
