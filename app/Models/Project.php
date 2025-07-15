@@ -60,4 +60,41 @@ class Project extends Model
     {
         return $query->where('status', 'completed');
     }
+
+    /**
+     * Get attachment information safely
+     */
+    public function getAttachmentInfo($attachment)
+    {
+        if (is_string($attachment) && !empty($attachment)) {
+            return [
+                'name' => basename($attachment),
+                'path' => $attachment,
+                'size' => 0, // Size not available for string format
+                'type' => 'string'
+            ];
+        }
+        
+        return null;
+    }
+
+    /**
+     * Get all valid attachments
+     */
+    public function getValidAttachments()
+    {
+        if (!$this->attachments || !is_array($this->attachments)) {
+            return [];
+        }
+
+        $validAttachments = [];
+        foreach ($this->attachments as $attachment) {
+            $info = $this->getAttachmentInfo($attachment);
+            if ($info) {
+                $validAttachments[] = $info;
+            }
+        }
+        
+        return $validAttachments;
+    }
 }

@@ -41,16 +41,12 @@ class ProjectController extends Controller
         $project->user_id = Auth::id();
         $project->status = 'pending';
 
-        // Handle file uploads
+        // Handle file uploads - store as strings for Filament compatibility
         if ($request->hasFile('attachments')) {
             $attachments = [];
             foreach ($request->file('attachments') as $file) {
                 $path = $file->store('project-attachments', 'public');
-                $attachments[] = [
-                    'name' => $file->getClientOriginalName(),
-                    'path' => $path,
-                    'size' => $file->getSize(),
-                ];
+                $attachments[] = $path; // Store only the path as string
             }
             $project->attachments = $attachments;
         }
@@ -90,18 +86,27 @@ class ProjectController extends Controller
             'attachments.*' => 'nullable|file|max:10240',
         ]);
 
-        // Handle new file uploads
+        // Handle new file uploads - store as strings for Filament compatibility
         if ($request->hasFile('attachments')) {
             $existingAttachments = $project->attachments ?? [];
+            
+            // Convert existing array attachments to strings if needed
+            $convertedAttachments = [];
+            foreach ($existingAttachments as $attachment) {
+                if (is_array($attachment) && isset($attachment['path'])) {
+                    $convertedAttachments[] = $attachment['path'];
+                } elseif (is_string($attachment)) {
+                    $convertedAttachments[] = $attachment;
+                }
+            }
+            
+            // Add new attachments as strings
             foreach ($request->file('attachments') as $file) {
                 $path = $file->store('project-attachments', 'public');
-                $existingAttachments[] = [
-                    'name' => $file->getClientOriginalName(),
-                    'path' => $path,
-                    'size' => $file->getSize(),
-                ];
+                $convertedAttachments[] = $path; // Store only the path as string
             }
-            $validated['attachments'] = $existingAttachments;
+            
+            $validated['attachments'] = $convertedAttachments;
         }
 
         $project->update($validated);
@@ -117,7 +122,13 @@ class ProjectController extends Controller
         // Delete attachments
         if ($project->attachments) {
             foreach ($project->attachments as $attachment) {
-                Storage::disk('public')->delete($attachment['path']);
+                if (is_array($attachment) && isset($attachment['path'])) {
+                    // Handle old array format
+                    Storage::disk('public')->delete($attachment['path']);
+                } elseif (is_string($attachment)) {
+                    // Handle new string format
+                    Storage::disk('public')->delete($attachment);
+                }
             }
         }
 

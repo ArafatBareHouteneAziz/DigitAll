@@ -123,11 +123,11 @@ class ProjectResource extends Resource
                 Forms\Components\Section::make('Attachments & Metadata')
                     ->schema([
                         Forms\Components\FileUpload::make('attachments')
+                            ->label('Project Attachments')
                             ->multiple()
                             ->directory('project-attachments')
                             ->downloadable(true)
                             ->disk('public')
-                            ->directory('project-attachments')
                             ->visibility('public')
                             ->acceptedFileTypes(['image/*', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'])
                             ->maxFiles(10)

@@ -121,7 +121,7 @@
                             <div>
                                 <label class="block text-sm font-semibold text-neutral-900 mb-2">{{ __('Current Attachments') }}</label>
                                 <div class="space-y-2">
-                                    @foreach($project->attachments as $index => $attachment)
+                                    @foreach($project->getValidAttachments() as $attachment)
                                         <div class="flex items-center justify-between p-3 bg-neutral-50 rounded-lg">
                                             <div class="flex items-center space-x-3">
                                                 <svg class="w-5 h-5 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,7 +129,11 @@
                                                 </svg>
                                                 <div>
                                                     <p class="text-sm font-medium text-neutral-900">{{ $attachment['name'] }}</p>
-                                                    <p class="text-xs text-neutral-500">{{ number_format($attachment['size'] / 1024, 1) }} KB</p>
+                                                    @if($attachment['size'] > 0)
+                                                        <p class="text-xs text-neutral-500">{{ number_format($attachment['size'] / 1024, 1) }} KB</p>
+                                                    @else
+                                                        <p class="text-xs text-neutral-500">{{ strtoupper(pathinfo($attachment['name'], PATHINFO_EXTENSION)) }} File</p>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <a href="{{ asset('storage/' . $attachment['path']) }}" target="_blank" class="text-primary-600 hover:text-primary-700">

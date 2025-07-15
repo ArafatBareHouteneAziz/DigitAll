@@ -75,14 +75,18 @@
                         <div class="mt-6">
                             <h3 class="text-lg font-semibold text-neutral-900 mb-4">{{ __('Attachments') }}</h3>
                             <div class="space-y-2">
-                                @foreach($project->attachments as $attachment)
+                                @foreach($project->getValidAttachments() as $attachment)
                                     <a href="{{ asset('storage/' . $attachment['path']) }}" target="_blank" class="flex items-center space-x-3 p-3 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors duration-200">
                                         <svg class="w-5 h-5 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
                                         </svg>
                                         <div class="flex-1">
                                             <p class="text-sm font-medium text-neutral-900">{{ $attachment['name'] }}</p>
+                                            @if($attachment['size'] > 0)
                                             <p class="text-xs text-neutral-500">{{ number_format($attachment['size'] / 1024, 1) }} KB</p>
+                                            @else
+                                                <p class="text-xs text-neutral-500">{{ strtoupper(pathinfo($attachment['name'], PATHINFO_EXTENSION)) }} File</p>
+                                            @endif
                                         </div>
                                         <svg class="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
