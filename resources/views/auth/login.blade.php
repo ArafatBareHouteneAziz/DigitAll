@@ -9,10 +9,10 @@
                     </svg>
                 </div>
                 <h2 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
-                    Welcome back
+                    {{ __('Welcome back') }}
                 </h2>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    Sign in to your account to continue
+                    {{ __('Sign in to your account to continue') }}
                 </p>
             </div>
 
@@ -40,7 +40,7 @@
                                 required 
                                 autofocus 
                                 autocomplete="username" 
-                                placeholder="Enter your email address" />
+                                placeholder="{{ __('Enter your email address') }}" />
                         </div>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
@@ -60,7 +60,7 @@
                                 name="password"
                                 required 
                                 autocomplete="current-password" 
-                                placeholder="Enter your password" />
+                                placeholder="{{ __('Enter your password') }}" />
                             <button type="button" 
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center"
                                 onclick="togglePassword()">
@@ -81,7 +81,7 @@
                                 class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" 
                                 name="remember">
                             <label for="remember_me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-                                {{ __('Remember me') }}
+                                    {{ __('Remember me') }}
                             </label>
                         </div>
 

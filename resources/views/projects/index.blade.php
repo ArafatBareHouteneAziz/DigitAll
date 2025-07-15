@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My Projects')
+@section('title', __('My Projects'))
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
@@ -15,15 +15,15 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                             </svg>
                         </div>
-                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">My Projects</h1>
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ __('My Projects') }}</h1>
                     </div>
-                    <p class="text-lg text-gray-600 dark:text-gray-400">Manage and track your digital projects</p>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">{{ __('Manage and track your digital projects') }}</p>
                 </div>
                 <a href="{{ route('projects.create') }}" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                     </svg>
-                    <span>New Project</span>
+                    <span>{{ __('New Project') }}</span>
                 </a>
             </div>
         </div>
@@ -38,16 +38,16 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </div>
-                    <input type="text" id="search-projects" placeholder="Search projects..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+                    <input type="text" id="search-projects" placeholder="{{ __('Search projects...') }}" class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
                 </div>
 
                 <!-- Status Filter -->
                 <div class="relative">
                     <select id="status-filter" class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white appearance-none">
-                        <option value="">All Status</option>
-                        <option value="pending">Pending</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="completed">Completed</option>
+                        <option value="">{{ __('All Status') }}</option>
+                        <option value="pending">{{ __('Pending') }}</option>
+                        <option value="in_progress">{{ __('In Progress') }}</option>
+                        <option value="completed">{{ __('Completed') }}</option>
                     </select>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,11 +59,11 @@
                 <!-- Sort By -->
                 <div class="relative">
                     <select id="sort-projects" class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white appearance-none">
-                        <option value="latest">Latest First</option>
-                        <option value="oldest">Oldest First</option>
-                        <option value="budget_high">Budget: High to Low</option>
-                        <option value="budget_low">Budget: Low to High</option>
-                        <option value="title">Title A-Z</option>
+                        <option value="latest">{{ __('Latest First') }}</option>
+                        <option value="oldest">{{ __('Oldest First') }}</option>
+                        <option value="budget_high">{{ __('Budget: High to Low') }}</option>
+                        <option value="budget_low">{{ __('Budget: Low to High') }}</option>
+                        <option value="title">{{ __('Title A-Z') }}</option>
                     </select>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +84,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Projects</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('Total Projects') }}</p>
                         <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ $projects->count() }}</p>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Pending</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('Pending') }}</p>
                         <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ $projects->where('status', 'pending')->count() }}</p>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">In Progress</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('In Progress') }}</p>
                         <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ $projects->where('status', 'in_progress')->count() }}</p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Completed</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('Completed') }}</p>
                         <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ $projects->where('status', 'completed')->count() }}</p>
                     </div>
                 </div>
@@ -173,13 +173,13 @@
                             <!-- Actions -->
                             <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
                                 <a href="{{ route('projects.show', $project) }}" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-semibold text-sm flex items-center">
-                                    View Details
+                                    {{ __('View Details') }}
                                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                                     </svg>
                                 </a>
                                 <div class="flex items-center space-x-2">
-                                    <a href="{{ route('projects.edit', $project) }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200" title="Edit project">
+                                    <a href="{{ route('projects.edit', $project) }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200" title="{{ __('Edit project') }}">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                         </svg>
@@ -200,16 +200,16 @@
             <div class="text-center py-16">
                 <div class="w-24 h-24 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-12 h-12 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">No Projects Yet</h3>
-                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">Start your first project to get things moving! Create a new project to begin your digital journey.</p>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('No Projects Yet') }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">{{ __('Start your digital journey by creating your first project. We\'ll help you bring your ideas to life.') }}</p>
                 <a href="{{ route('projects.create') }}" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-3">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                     </svg>
-                    <span>Create Your First Project</span>
+                    <span>{{ __('Create Your First Project') }}</span>
                 </a>
             </div>
         @endif

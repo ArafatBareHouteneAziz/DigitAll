@@ -42,7 +42,7 @@
                     required 
                     autofocus 
                     autocomplete="name" 
-                    placeholder="Enter your full name" />
+                    placeholder="{{ __('Enter your full name') }}" />
             </div>
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
@@ -63,7 +63,7 @@
                     :value="old('email', $user->email)" 
                     required 
                     autocomplete="username" 
-                    placeholder="Enter your email address" />
+                    placeholder="{{ __('Enter your email address') }}" />
             </div>
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 

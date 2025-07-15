@@ -21,8 +21,13 @@ class DashboardController extends Controller
         $completedProjects = $user->projects()->where('status', 'completed')->count();
         $pendingProjects = $user->projects()->where('status', 'pending')->count();
         
-        // Calculate total revenue
-        $totalRevenue = $user->projects()->where('status', 'completed')->sum('budget');
+        // Get message statistics
+        $totalMessages = $user->receivedMessages()->count();
+        $unreadMessages = $user->receivedMessages()->where('is_read', false)->count();
+        
+        // Get service statistics
+        $totalServices = Service::where('is_active', true)->count();
+        $userServices = $user->projects()->with('service')->get()->pluck('service.name')->unique()->count();
         
         // Get recent projects
         $recentProjects = $user->projects()
@@ -31,7 +36,14 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
         
-        // Calculate percentage changes (simplified - you might want to implement more sophisticated logic)
+        // Get recent messages
+        $recentMessages = $user->receivedMessages()
+            ->with(['sender', 'receiver'])
+            ->latest()
+            ->take(5)
+            ->get();
+        
+        // Calculate project growth (simplified)
         $lastMonthProjects = $user->projects()
             ->where('created_at', '>=', Carbon::now()->subMonth())
             ->count();
@@ -46,21 +58,19 @@ class DashboardController extends Controller
             ? round((($lastMonthProjects - $previousMonthProjects) / $previousMonthProjects) * 100, 1)
             : 0;
         
-        // Revenue growth calculation
-        $lastMonthRevenue = $user->projects()
-            ->where('status', 'completed')
-            ->where('updated_at', '>=', Carbon::now()->subMonth())
-            ->sum('budget');
-        $previousMonthRevenue = $user->projects()
-            ->where('status', 'completed')
-            ->whereBetween('updated_at', [
+        // Calculate message growth
+        $lastMonthMessages = $user->receivedMessages()
+            ->where('created_at', '>=', Carbon::now()->subMonth())
+            ->count();
+        $previousMonthMessages = $user->receivedMessages()
+            ->whereBetween('created_at', [
                 Carbon::now()->subMonths(2),
                 Carbon::now()->subMonth()
             ])
-            ->sum('budget');
+            ->count();
         
-        $revenueGrowth = $previousMonthRevenue > 0 
-            ? round((($lastMonthRevenue - $previousMonthRevenue) / $previousMonthRevenue) * 100, 1)
+        $messageGrowth = $previousMonthMessages > 0 
+            ? round((($lastMonthMessages - $previousMonthMessages) / $previousMonthMessages) * 100, 1)
             : 0;
         
         return view('dashboard', compact(
@@ -68,10 +78,14 @@ class DashboardController extends Controller
             'activeProjects',
             'completedProjects',
             'pendingProjects',
-            'totalRevenue',
+            'totalMessages',
+            'unreadMessages',
+            'totalServices',
+            'userServices',
             'recentProjects',
+            'recentMessages',
             'projectGrowth',
-            'revenueGrowth'
+            'messageGrowth'
         ));
     }
 } 

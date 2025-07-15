@@ -9,10 +9,10 @@
                     </svg>
                 </div>
                 <h2 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
-                    Reset your password
+                    {{ __('Reset your password') }}
                 </h2>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    Enter your email address and we'll send you a reset link
+                    {{ __('Enter your email address and we\'ll send you a reset link') }}
                 </p>
             </div>
 
@@ -43,7 +43,7 @@
                                 :value="old('email')" 
                                 required 
                                 autofocus 
-                                placeholder="Enter your email address" />
+                                placeholder="{{ __('Enter your email address') }}" />   
                         </div>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Messages')
+@section('title', __('Messages'))
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
@@ -15,15 +15,15 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                             </svg>
                         </div>
-                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Messages</h1>
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ __('Messages') }}</h1>
                     </div>
-                    <p class="text-lg text-gray-600 dark:text-gray-400">Contact admin team for project support and inquiries</p>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">{{ __('Contact admin team for project support and inquiries') }}</p>
                 </div>
                 <div class="flex items-center space-x-4">
                     @if($unreadCount > 0)
                         <div class="relative">
                             <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold animate-pulse">
-                            {{ $unreadCount }} unread
+                            {{ $unreadCount }} {{ __('unread') }}
                         </span>
                         </div>
                     @endif
@@ -31,13 +31,13 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                         </svg>
-                        <span>Contact Admin</span>
+                        <span>{{ __('Contact Admin') }}</span>
                     </a>
                     <button id="chatbot-toggle" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                         </svg>
-                        <span>Contact Admin</span>
+                        <span>{{ __('Contact Admin') }}</span>
                     </button>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                                             @endif
                                             @if($message->receiver_type === 'App\Models\Employee')
                                                 <span class="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs font-medium">
-                                                    Admin Team
+                                                    {{ __('Admin Team') }}
                                                 </span>
                                             @endif
                                         </div>
@@ -96,16 +96,16 @@
                                 <!-- Actions -->
                                 <div class="flex items-center space-x-2 ml-4">
                                     @if(!$message->is_read)
-                                        <button onclick="markAsRead({{ $message->id }})" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200" title="Mark as read">
+                                        <button onclick="markAsRead({{ $message->id }})" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200" title="{{ __('Mark as read') }}">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                             </svg>
                                         </button>
                                     @endif
-                                    <form action="{{ route('messages.destroy', $message) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this message?')">
+                                    <form action="{{ route('messages.destroy', $message) }}" method="POST" class="inline" onsubmit="return confirm('{{ __('Are you sure you want to delete this message?') }}')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200" title="Delete message">
+                                        <button type="submit" class="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200" title="{{ __('Delete message') }}">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>
@@ -130,20 +130,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">No Messages Yet</h3>
-                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">Contact the admin team for project support, technical assistance, or any questions about your projects.</p>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{{ __('No Messages Yet') }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">{{ __('Contact the admin team for project support, technical assistance, or any questions about your projects.') }}</p>
                 <div class="flex items-center justify-center space-x-4">
                     <a href="{{ route('messages.create') }}" class="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-3">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                         </svg>
-                        <span>Contact Admin</span>
+                        <span>{{ __('Contact Admin') }}</span>
                     </a>
                     <button id="chatbot-toggle" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-3">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                     </svg>
-                    <span>Chat with AI Assistant</span>
+                    <span>{{ __('Chat with AI Assistant') }}</span>
                 </button>
             </div>
         @endif
@@ -164,8 +164,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold">AI Assistant</h3>
-                            <p class="text-sm opacity-90">How can I help you today?</p>
+                            <h3 class="font-semibold">{{ __('AI Assistant') }}</h3>
+                            <p class="text-sm opacity-90">{{ __('How can I help you today?') }}</p>
                         </div>
                     </div>
                     <button id="chatbot-close" class="text-white/80 hover:text-white transition-colors duration-200">
@@ -185,7 +185,7 @@
                         </svg>
                     </div>
                     <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl px-4 py-3 max-w-xs">
-                        <p class="text-sm text-gray-700 dark:text-gray-300">Hello! I'm your AI assistant. I can help you with project information, service details, or general inquiries. What would you like to know?</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">{{ __('Hello! I\'m your AI assistant. I can help you with project information, service details, or general inquiries. What would you like to know?') }}</p>
                     </div>
                 </div>
             </div>
@@ -193,7 +193,7 @@
             <!-- Chat Input -->
             <div class="p-4 border-t border-gray-200 dark:border-gray-700">
                 <form id="chat-form" class="flex space-x-3">
-                    <input type="text" id="chat-input" placeholder="Type your message..." class="flex-1 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
+                    <input type="text" id="chat-input" placeholder="{{ __('Type your message...') }}" class="flex-1 border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white dark:placeholder-gray-400">
                     <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl transition-colors duration-200">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>

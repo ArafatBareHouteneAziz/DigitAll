@@ -9,10 +9,10 @@
                     </svg>
                 </div>
                 <h2 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
-                    Create your account
+                    {{ __('Create your account') }}
                 </h2>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    Join us and start your journey
+                    {{ __('Join us and start your journey') }}
                 </p>
             </div>
 
@@ -37,7 +37,7 @@
                                 required 
                                 autofocus 
                                 autocomplete="name" 
-                                placeholder="Enter your full name" />
+                                placeholder="{{ __('Enter your full name') }}" />
                         </div>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -58,7 +58,7 @@
                                 :value="old('email')" 
                                 required 
                                 autocomplete="username" 
-                                placeholder="Enter your email address" />
+                                placeholder="{{ __('Enter your email address') }}" />
                         </div>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
@@ -78,7 +78,7 @@
                             name="password"
                                 required 
                                 autocomplete="new-password" 
-                                placeholder="Create a strong password" />
+                                placeholder="{{ __('Create a strong password') }}" />
                             <button type="button" 
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center"
                                 onclick="togglePassword('password')">
@@ -106,7 +106,7 @@
                                 name="password_confirmation" 
                                 required 
                                 autocomplete="new-password" 
-                                placeholder="Confirm your password" />
+                                placeholder="{{ __('Confirm your password') }}" />
                             <button type="button" 
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center"
                                 onclick="togglePassword('password_confirmation')">
@@ -126,13 +126,13 @@
                             class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded" 
                             required>
                         <label for="terms" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-                            I agree to the 
+                            {{ __('I agree to the') }} 
                             <a href="#" class="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300">
-                                Terms of Service
+                                {{ __('Terms of Service') }}
                             </a> 
                             and 
                             <a href="#" class="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300">
-                                Privacy Policy
+                                {{ __('Privacy Policy') }}
                             </a>
                         </label>
                     </div>

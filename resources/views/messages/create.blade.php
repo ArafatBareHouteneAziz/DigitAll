@@ -15,15 +15,15 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                             </svg>
                         </div>
-                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Contact Admin</h1>
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ __('Contact Admin') }}</h1>
                     </div>
-                    <p class="text-lg text-gray-600 dark:text-gray-400">Send a message to the admin team for support and inquiries</p>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">{{ __('Send a message to the admin team for support and inquiries') }}</p>
                 </div>
                 <a href="{{ route('messages.index') }}" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
-                    Back to Messages
+                    {{ __('Back to Messages') }}
                 </a>
             </div>
         </div>
@@ -48,7 +48,7 @@
                             <svg class="w-5 h-5 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                             </svg>
-                            <span class="font-semibold">Please fix the following errors:</span>
+                            <span class="font-semibold">{{ __('Please fix the following errors:') }}</span>
                         </div>
                         <ul class="list-disc list-inside space-y-1">
                             @foreach($errors->all() as $error)
@@ -64,10 +64,10 @@
                     <!-- Recipient Selection -->
                     <div>
                         <label for="receiver_id" class="block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                            Send to Admin/Support Team *
+                            {{ __('Send to Admin/Support Team') }} *
                         </label>
                         <select name="receiver_id" id="receiver_id" class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white" required>
-                            <option value="">Select an admin/support team member</option>
+                            <option value="">{{ __('Select an admin/support team member') }}</option>
                             @foreach($employees as $employee)
                                 <option value="{{ $employee->id }}" {{ old('receiver_id') == $employee->id ? 'selected' : '' }}>
                                     {{ $employee->name }} ({{ $employee->email }}) - {{ $employee->position ?? 'Admin' }}
@@ -80,10 +80,10 @@
                     <!-- Project Selection (Optional) -->
                     <div>
                         <label for="project_id" class="block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                            Related Project (Optional)
+                            {{ __('Related Project (Optional)') }}
                         </label>
                         <select name="project_id" id="project_id" class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white">
-                            <option value="">No specific project</option>
+                            <option value="">{{ __('No specific project') }}</option>
                             @foreach($projects as $project)
                                 <option value="{{ $project->id }}" {{ old('project_id') == $project->id ? 'selected' : '' }}>
                                     {{ $project->title }}
@@ -95,35 +95,35 @@
                     <!-- Subject -->
                     <div>
                         <label for="subject" class="block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                            Subject *
+                            {{ __('Subject') }} *
                         </label>
                         <input type="text" name="subject" id="subject" value="{{ old('subject') }}" 
                                class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white" 
-                               placeholder="Enter message subject" required>
+                               placeholder="{{ __('Enter message subject') }}" required>
                     </div>
 
                     <!-- Message Content -->
                     <div>
                         <label for="content" class="block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                            Message *
+                            {{ __('Message') }} *
                         </label>
                         <textarea name="content" id="content" rows="6" 
                                   class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white" 
-                                  placeholder="Type your message here..." required>{{ old('content') }}</textarea>
+                                  placeholder="{{ __('Type your message here...') }}" required>{{ old('content') }}</textarea>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="flex items-center justify-end space-x-4 pt-4">
                         <a href="{{ route('messages.index') }}" 
                            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
-                            Cancel
+                            {{ __('Cancel') }}
                         </a>
                         <button type="submit" 
                                 class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                             </svg>
-                            <span>Send to Admin</span>
+                            <span>{{ __('Send to Admin') }}</span>
                         </button>
                     </div>
                 </form>

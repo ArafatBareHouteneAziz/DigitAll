@@ -5,10 +5,10 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-                        Welcome to Admin Dashboard
+                        {{ __('Welcome to Admin Dashboard') }}
                     </h2>
                     <p class="text-gray-600 dark:text-gray-400 mt-2">
-                        Manage your digital services, users, projects, and communications from one central location.
+                        {{ __('Manage your digital services, users, projects, and communications from one central location.') }}
                     </p>
                 </div>
                 <div class="flex space-x-3">
@@ -17,14 +17,14 @@
                         href="{{ \App\Filament\Resources\MessageResource::getUrl('create') }}"
                         color="primary"
                     >
-                        Send Message
+                        {{ __('Send Message') }}
                     </x-filament::button>
                     <x-filament::button
                         icon="heroicon-o-folder"
                         href="{{ \App\Filament\Resources\ProjectResource::getUrl('index') }}"
                         color="info"
                     >
-                        View Projects
+                        {{ __('View Projects') }}
                     </x-filament::button>
                 </div>
             </div>
@@ -38,8 +38,8 @@
                         <x-heroicon-o-users class="h-6 w-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Users</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Manage client accounts</p>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ __('Users') }}</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ __('Manage client accounts') }}</p>
                     </div>
                 </div>
                 <div class="mt-4">
@@ -48,7 +48,7 @@
                         href="{{ \App\Filament\Resources\UserResource::getUrl('index') }}"
                         color="info"
                     >
-                        View Users
+                        {{ __('View Users') }}
                     </x-filament::button>
                 </div>
             </div>
@@ -59,8 +59,8 @@
                         <x-heroicon-o-folder class="h-6 w-6 text-green-600 dark:text-green-400" />
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Projects</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Track ongoing work</p>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ __('Projects') }}</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ __('Track ongoing work') }}</p>
                     </div>
                 </div>
                 <div class="mt-4">
@@ -69,7 +69,7 @@
                         href="{{ \App\Filament\Resources\ProjectResource::getUrl('index') }}"
                         color="success"
                     >
-                        View Projects
+                        {{ __('View Projects') }}
                     </x-filament::button>
                 </div>
             </div>
@@ -80,8 +80,8 @@
                         <x-heroicon-o-envelope class="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Messages</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Client communications</p>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ __('Messages') }}</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ __('Client communications') }}</p>
                     </div>
                 </div>
                 <div class="mt-4">
@@ -90,7 +90,7 @@
                         href="{{ \App\Filament\Resources\MessageResource::getUrl('index') }}"
                         color="warning"
                     >
-                        View Messages
+                        {{ __('View Messages') }}
                     </x-filament::button>
                 </div>
             </div>
@@ -101,8 +101,8 @@
                         <x-heroicon-o-cog class="h-6 w-6 text-purple-600 dark:text-purple-400" />
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Services</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Manage offerings</p>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ __('Services') }}</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ __('Manage offerings') }}</p>
                     </div>
                 </div>
                 <div class="mt-4">
@@ -111,7 +111,7 @@
                         href="{{ \App\Filament\Resources\ServiceResource::getUrl('index') }}"
                         color="secondary"
                     >
-                        View Services
+                        {{ __('View Services') }}
                     </x-filament::button>
                 </div>
             </div>

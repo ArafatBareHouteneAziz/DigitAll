@@ -9,11 +9,11 @@
         <div class="mb-8">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-4xl font-bold text-neutral-900 mb-2">Profile Settings</h1>
-                    <p class="text-lg text-neutral-600">Manage your account information and preferences</p>
+                    <h1 class="text-4xl font-bold text-neutral-900 mb-2">{{ __('Profile Settings') }}</h1>
+                    <p class="text-lg text-neutral-600">{{ __('Manage your account information and preferences') }}</p>
                 </div>
                 <a href="{{ route('dashboard') }}" class="text-primary-600 hover:text-primary-700 font-semibold">
-                    ← Back to Dashboard
+                    ← {{ __('Back to Dashboard') }}
                 </a>
             </div>
         </div>
@@ -26,8 +26,8 @@
                         <span class="text-primary-600 font-semibold text-lg">{{ substr(auth()->user()->name, 0, 1) }}</span>
                     </div>
                     <div>
-                        <h2 class="text-2xl font-bold text-neutral-900">Profile Information</h2>
-                        <p class="text-neutral-600">Update your account information and email address</p>
+                        <h2 class="text-2xl font-bold text-neutral-900">{{ __('Profile Information') }}</h2>
+                        <p class="text-neutral-600">{{ __('Update your account information and email address') }}</p>
                     </div>
                 </div>
                 @include('profile.partials.update-profile-information-form')
@@ -42,8 +42,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h2 class="text-2xl font-bold text-neutral-900">Update Password</h2>
-                        <p class="text-neutral-600">Ensure your account is using a long, random password to stay secure</p>
+                        <h2 class="text-2xl font-bold text-neutral-900">{{ __('Update Password') }}</h2>
+                        <p class="text-neutral-600">{{ __('Ensure your account is using a long, random password to stay secure') }}</p>
                     </div>
                 </div>
                 @include('profile.partials.update-password-form')
@@ -58,8 +58,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h2 class="text-2xl font-bold text-neutral-900">Delete Account</h2>
-                        <p class="text-neutral-600">Permanently delete your account and all of its data</p>
+                        <h2 class="text-2xl font-bold text-neutral-900">{{ __('Delete Account') }}</h2>
+                        <p class="text-neutral-600">{{ __('Permanently delete your account and all of its data') }}</p>
                     </div>
                 </div>
                 @include('profile.partials.delete-user-form')

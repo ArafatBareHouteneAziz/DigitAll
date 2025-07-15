@@ -415,7 +415,7 @@
                         </svg>
                         <p>{{ session('success') }}</p>
                         <button @click="show = false" class="text-green-600 hover:text-green-800">
-                            <span class="sr-only">Dismiss</span>
+                            <span class="sr-only">{{ __('Dismiss') }}</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
@@ -432,7 +432,7 @@
                         </svg>
                         <p>{{ session('error') }}</p>
                         <button @click="show = false" class="text-red-600 hover:text-red-800">
-                            <span class="sr-only">Dismiss</span>
+                            <span class="sr-only">{{ __('Dismiss') }}</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                             </svg>

@@ -371,7 +371,7 @@
                         <img src="{{ asset('images/case-studies/energy.jpg') }}" alt="Energy Management Case Study" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
-                            <span class="text-sm font-semibold bg-primary-500/30 backdrop-blur-sm px-3 py-1 rounded-full">Energy Sector</span>
+                            <span class="text-sm font-semibold bg-primary-500/30 backdrop-blur-sm px-3 py-1 rounded-full">{{ __('Energy Sector') }}</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -394,7 +394,7 @@
                         <img src="{{ asset('images/case-studies/automation.jpg') }}" alt="Process Automation Case Study" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
-                            <span class="text-sm font-semibold bg-secondary-500/30 backdrop-blur-sm px-3 py-1 rounded-full">Manufacturing</span>
+                            <span class="text-sm font-semibold bg-secondary-500/30 backdrop-blur-sm px-3 py-1 rounded-full">{{ __('Manufacturing') }}</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -417,7 +417,7 @@
                         <img src="{{ asset('images/case-studies/resource.jpg') }}" alt="Resource Management Case Study" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         <div class="absolute bottom-4 left-4 text-white">
-                            <span class="text-sm font-semibold bg-tertiary-500/30 backdrop-blur-sm px-3 py-1 rounded-full">Smart City</span>
+                            <span class="text-sm font-semibold bg-tertiary-500/30 backdrop-blur-sm px-3 py-1 rounded-full">{{ __('Smart City') }}</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -563,8 +563,8 @@
                             <img src="{{ asset('images/testimonials/client1.jpg') }}" alt="Client" class="w-12 h-12 rounded-full">
                         </div>
                         <div class="ml-4">
-                            <h4 class="text-lg font-semibold text-neutral-900">Sarah Johnson</h4>
-                            <p class="text-neutral-600">CTO, TechCorp</p>
+                            <h4 class="text-lg font-semibold text-neutral-900">{{ __('Sarah Johnson') }}</h4>
+                            <p class="text-neutral-600">{{ __('CTO, TechCorp') }}</p>
                         </div>
                     </div>
                     <p class="text-neutral-600 italic">"Their expertise in both software development and sustainability practices helped us achieve our digital transformation goals while reducing our environmental impact."</p>
@@ -576,8 +576,8 @@
                             <img src="{{ asset('images/testimonials/client2.jpg') }}" alt="Client" class="w-12 h-12 rounded-full">
                         </div>
                         <div class="ml-4">
-                            <h4 class="text-lg font-semibold text-neutral-900">Michael Chen</h4>
-                            <p class="text-neutral-600">Innovation Director, EcoSmart</p>
+                            <h4 class="text-lg font-semibold text-neutral-900">{{ __('Michael Chen') }}</h4>
+                            <p class="text-neutral-600">{{ __('Innovation Director, EcoSmart') }}</p>
                         </div>
                     </div>
                     <p class="text-neutral-600 italic">"The IoT solution they developed revolutionized our energy monitoring system. Professional team with outstanding technical knowledge."</p>
@@ -589,8 +589,8 @@
                             <img src="{{ asset('images/testimonials/client3.jpg') }}" alt="Client" class="w-12 h-12 rounded-full">
                     </div>
                         <div class="ml-4">
-                            <h4 class="text-lg font-semibold text-neutral-900">Emma Rodriguez</h4>
-                            <p class="text-neutral-600">CEO, InnovateCo</p>
+                            <h4 class="text-lg font-semibold text-neutral-900">{{ __('Emma Rodriguez') }}</h4>
+                            <p class="text-neutral-600">{{ __('CEO, InnovateCo') }}</p>
                         </div>
                     </div>
                     <p class="text-neutral-600 italic">"Their training programs significantly improved our team's capabilities in sustainable technology practices. Highly recommended!"</p>

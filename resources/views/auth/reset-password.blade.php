@@ -9,10 +9,10 @@
                     </svg>
                 </div>
                 <h2 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">
-                    Set new password
+                    {{ __('Set new password') }}
                 </h2>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    Choose a strong password for your account
+                    {{ __('Choose a strong password for your account') }}
                 </p>
             </div>
 
@@ -40,7 +40,7 @@
                                 required 
                                 autofocus 
                                 autocomplete="username" 
-                                placeholder="Enter your email address" />
+                                placeholder="{{ __('Enter your email address') }}" />
                         </div>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
@@ -60,7 +60,7 @@
                                 name="password"
                                 required 
                                 autocomplete="new-password" 
-                                placeholder="Enter your new password" />
+                                placeholder="{{ __('Enter your new password') }}" />
                             <button type="button" 
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center"
                                 onclick="togglePassword('password')">
@@ -88,7 +88,7 @@
                                 name="password_confirmation" 
                                 required 
                                 autocomplete="new-password" 
-                                placeholder="Confirm your new password" />
+                                placeholder="{{ __('Confirm your new password') }}" />
                             <button type="button" 
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center"
                                 onclick="togglePassword('password_confirmation')">
@@ -103,25 +103,25 @@
 
                     <!-- Password Strength Indicator -->
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                        <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password Requirements:</h4>
+                        <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Password Requirements:') }}</h4>
                         <ul class="text-xs text-gray-600 dark:text-gray-400 space-y-1">
                             <li class="flex items-center">
                                 <svg class="w-3 h-3 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
-                                At least 8 characters
+                                {{ __('At least 8 characters') }}
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-3 h-3 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
-                                Mix of letters and numbers
+                                {{ __('Mix of letters and numbers') }}
                             </li>
                             <li class="flex items-center">
                                 <svg class="w-3 h-3 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
-                                Include special characters
+                                {{ __('Include special characters') }}
                             </li>
                         </ul>
                     </div>
