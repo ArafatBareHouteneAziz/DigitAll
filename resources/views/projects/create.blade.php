@@ -105,15 +105,16 @@
                         <!-- File Attachments -->
                         <div>
                             <label for="attachments" class="block text-sm font-semibold text-neutral-900 mb-2">{{ __('Attachments (Optional)') }}</label>
-                            <div class="border-2 border-dashed border-neutral-300 rounded-xl p-6 text-center hover:border-primary-300 transition-colors duration-200">
+                            <div id="file-upload-area" class="border-2 border-dashed border-neutral-300 rounded-xl p-6 text-center hover:border-primary-300 transition-colors duration-200 cursor-pointer">
                                 <input type="file" name="attachments[]" id="attachments" multiple class="hidden" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif">
-                                <div class="space-y-2">
+                                <div id="upload-content" class="space-y-2">
                                     <svg class="w-12 h-12 text-neutral-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
                                     </svg>
                                     <p class="text-neutral-600">{{ __('Click to upload files or drag and drop') }}</p>
                                     <p class="text-sm text-neutral-500">{{ __('PDF, DOC, TXT, JPG, PNG (Max 10MB each)') }}</p>
                                 </div>
+                                <div id="file-list" class="mt-4 space-y-2 hidden"></div>
                             </div>
                             @error('attachments.*')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -143,22 +144,119 @@
 
 <script>
 // File upload handling
-document.getElementById('attachments').addEventListener('change', function(e) {
-    const files = e.target.files;
-    const container = e.target.parentElement;
-
-    if (files.length > 0) {
-        // Use JS variable for file count, not Blade/PHP
-        container.innerHTML = `
-            <div class="space-y-2">
-                <svg class="w-8 h-8 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('attachments');
+    const uploadArea = document.getElementById('file-upload-area');
+    const uploadContent = document.getElementById('upload-content');
+    const fileList = document.getElementById('file-list');
+    
+    // Click to upload
+    uploadArea.addEventListener('click', function() {
+        fileInput.click();
+    });
+    
+    // Drag and drop functionality
+    uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        uploadArea.classList.add('border-primary-500', 'bg-primary-50');
+    });
+    
+    uploadArea.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('border-primary-500', 'bg-primary-50');
+    });
+    
+    uploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        uploadArea.classList.remove('border-primary-500', 'bg-primary-50');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files;
+            handleFileSelection(files);
+        }
+    });
+    
+    // File input change
+    fileInput.addEventListener('change', function(e) {
+        const files = e.target.files;
+        if (files.length > 0) {
+            handleFileSelection(files);
+        }
+    });
+    
+    function handleFileSelection(files) {
+        // Hide upload content and show file list
+        uploadContent.classList.add('hidden');
+        fileList.classList.remove('hidden');
+        
+        // Clear previous file list
+        fileList.innerHTML = '';
+        
+        // Add each file to the list
+        Array.from(files).forEach((file, index) => {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'flex items-center justify-between p-3 bg-neutral-50 rounded-lg';
+            
+            const fileSize = (file.size / 1024).toFixed(1);
+            const fileExtension = file.name.split('.').pop().toUpperCase();
+            
+            fileItem.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <span class="text-xs font-semibold text-primary-600">${fileExtension}</span>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-neutral-900">${file.name}</p>
+                        <p class="text-xs text-neutral-500">${fileSize} KB</p>
+                    </div>
+                </div>
+                <button type="button" class="text-red-500 hover:text-red-700" onclick="removeFile(${index})">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            `;
+            
+            fileList.appendChild(fileItem);
+        });
+        
+        // Show success message
+        const successMessage = document.createElement('div');
+        successMessage.className = 'mt-4 p-3 bg-green-50 border border-green-200 rounded-lg';
+        successMessage.innerHTML = `
+            <div class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <p class="text-green-600 font-medium">${files.length} ${'{{ __("file(s) selected") }}'}</p>
-                <p class="text-sm text-neutral-500">{{ __('Ready to upload') }}</p>
+                <span class="text-sm text-green-700">${files.length} {{ __('file(s) selected') }}</span>
             </div>
         `;
+        fileList.appendChild(successMessage);
     }
+    
+    // Global function to remove files
+    window.removeFile = function(index) {
+        const dt = new DataTransfer();
+        const files = fileInput.files;
+        
+        for (let i = 0; i < files.length; i++) {
+            if (i !== index) {
+                dt.items.add(files[i]);
+            }
+        }
+        
+        fileInput.files = dt.files;
+        
+        if (fileInput.files.length === 0) {
+            // No files left, show upload content
+            uploadContent.classList.remove('hidden');
+            fileList.classList.add('hidden');
+        } else {
+            // Re-render file list
+            handleFileSelection(fileInput.files);
+        }
+    };
 });
 
 // Date validation

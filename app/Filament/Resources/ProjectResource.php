@@ -122,15 +122,20 @@ class ProjectResource extends Resource
                 
                 Forms\Components\Section::make('Attachments & Metadata')
                     ->schema([
-                Forms\Components\FileUpload::make('attachments')
-                    ->multiple()
+                        Forms\Components\FileUpload::make('attachments')
+                            ->multiple()
                             ->directory('project-attachments')
+                            ->downloadable(true)
                             ->disk('public')
+                            ->directory('project-attachments')
                             ->visibility('public')
-                            ->helperText('Upload project-related files'),
+                            ->acceptedFileTypes(['image/*', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'])
+                            ->maxFiles(10)
+                            ->maxSize(10240) // 10MB
+                            ->helperText('Upload project-related files (PDF, DOC, TXT, JPG, PNG - Max 10MB each)'),
                         
-                Forms\Components\KeyValue::make('metadata')
-                    ->keyLabel('Key')
+                        Forms\Components\KeyValue::make('metadata')
+                            ->keyLabel('Key')
                             ->valueLabel('Value')
                             ->columnSpanFull()
                             ->helperText('Add additional project metadata'),
