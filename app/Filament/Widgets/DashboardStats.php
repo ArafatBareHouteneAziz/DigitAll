@@ -12,7 +12,9 @@ use App\Models\Employee;
 class DashboardStats extends BaseWidget
 {
     protected static ?string $pollingInterval = '30s';
-
+    
+    protected static bool $isLazy = false;
+    
     protected function getStats(): array
     {
         return [

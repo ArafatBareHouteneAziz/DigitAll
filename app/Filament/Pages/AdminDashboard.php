@@ -2,12 +2,12 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Pages\Dashboard as BaseDashboard;
+use Filament\Pages\Page;
 use App\Filament\Widgets\DashboardStats;
 use App\Filament\Widgets\RecentMessages;
 use App\Filament\Widgets\RecentProjects;
 
-class AdminDashboard extends BaseDashboard
+class AdminDashboard extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-home';
     

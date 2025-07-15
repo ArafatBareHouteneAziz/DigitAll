@@ -13,6 +13,8 @@ class RecentMessages extends BaseWidget
     protected int | string | array $columnSpan = 'full';
     
     protected static ?string $pollingInterval = '30s';
+    
+    protected static bool $isLazy = false;
 
     public function table(Tables\Table $table): Tables\Table
     {

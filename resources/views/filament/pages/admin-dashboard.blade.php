@@ -117,21 +117,6 @@
             </div>
         </div>
 
-        <!-- Widgets will be rendered here -->
-        @if (count($this->getHeaderWidgets()))
-            <div class="space-y-6">
-                @foreach ($this->getHeaderWidgets() as $widget)
-                    @livewire($widget)
-                @endforeach
-            </div>
-        @endif
-
-        @if (count($this->getFooterWidgets()))
-            <div class="space-y-6">
-                @foreach ($this->getFooterWidgets() as $widget)
-                    @livewire($widget)
-                @endforeach
-            </div>
-        @endif
+        
     </div>
 </x-filament-panels::page> 
