@@ -6,9 +6,12 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Employee;
 
 class MessageController extends Controller
 {
+    use AuthorizesRequests;
     public function index()
     {
         $messages = Auth::user()->receivedMessages()
@@ -21,12 +24,21 @@ class MessageController extends Controller
         return view('messages.index', compact('messages', 'unreadCount'));
     }
 
+    public function create()
+    {
+        $users = User::where('id', '!=', Auth::id())->get();
+        $employees = Employee::where('is_active', true)->get();
+        $projects = Auth::user()->projects()->get();
+        
+        return view('messages.create', compact('users', 'employees', 'projects'));
+    }
+
     public function show(Message $message)
     {
         $this->authorize('view', $message);
 
         // Mark as read if it's a received message
-        if ($message->receiver_id === Auth::id() && !$message->is_read) {
+        if ($message->receiver_id === Auth::id() && $message->receiver_type === User::class && !$message->is_read) {
             $message->update(['is_read' => true]);
         }
 
@@ -38,7 +50,8 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'receiver_id' => 'required|exists:users,id',
+            'receiver_id' => 'required',
+            'receiver_type' => 'required|in:App\\Models\\User,App\\Models\\Employee',
             'project_id' => 'nullable|exists:projects,id',
             'subject' => 'required|string|max:255',
             'content' => 'required|string',

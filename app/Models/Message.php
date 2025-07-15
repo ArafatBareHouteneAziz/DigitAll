@@ -12,7 +12,9 @@ class Message extends Model
     protected $fillable = [
         'sender_id',
         'receiver_id',
+        'receiver_type',
         'project_id',
+        'subject',
         'content',
         'is_read',
         'attachments',
@@ -32,7 +34,7 @@ class Message extends Model
 
     public function receiver()
     {
-        return $this->belongsTo(User::class, 'receiver_id');
+        return $this->morphTo();
     }
 
     public function project()

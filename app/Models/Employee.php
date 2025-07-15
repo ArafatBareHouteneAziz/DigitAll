@@ -31,6 +31,17 @@ class Employee extends Authenticatable implements FilamentUser
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function receivedMessages()
+    {
+        return $this->morphMany(Message::class, 'receiver');
+    }
+
+    public function unreadMessages()
+    {
+        return $this->receivedMessages()->where('is_read', false);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return str_contains($this->email, '@admin.com');
