@@ -30,7 +30,7 @@
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                         </svg>
-                        Send Message
+                        Contact Admin
                     </a>
                 </div>
             </div>
@@ -84,7 +84,14 @@
                         </svg>
                         To
                     </h3>
-                    <p class="text-gray-700 dark:text-gray-300">{{ $message->receiver->name }} ({{ $message->receiver->email }})</p>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        {{ $message->receiver->name }} ({{ $message->receiver->email }})
+                        @if($message->receiver_type === 'App\Models\Employee')
+                            <span class="inline-block ml-2 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                                Admin Team
+                            </span>
+                        @endif
+                    </p>
                 </div>
                 @if($message->project)
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">

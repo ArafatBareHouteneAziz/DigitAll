@@ -15,9 +15,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                             </svg>
                         </div>
-                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Send Message</h1>
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Contact Admin</h1>
                     </div>
-                    <p class="text-lg text-gray-600 dark:text-gray-400">Send a message to any user in the system</p>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">Send a message to the admin team for support and inquiries</p>
                 </div>
                 <a href="{{ route('messages.index') }}" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,44 +63,18 @@
                     
                     <!-- Recipient Selection -->
                     <div>
-                        <label for="receiver_type" class="block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                            Send to *
+                        <label for="receiver_id" class="block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                            Send to Admin/Support Team *
                         </label>
-                        <select name="receiver_type" id="receiver_type" class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white mb-4" required>
-                            <option value="">Select recipient type</option>
-                            <option value="App\Models\User" {{ old('receiver_type') == 'App\Models\User' ? 'selected' : '' }}>Users</option>
-                            <option value="App\Models\Employee" {{ old('receiver_type') == 'App\Models\Employee' ? 'selected' : '' }}>Admin/Support Team</option>
+                        <select name="receiver_id" id="receiver_id" class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white" required>
+                            <option value="">Select an admin/support team member</option>
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee->id }}" {{ old('receiver_id') == $employee->id ? 'selected' : '' }}>
+                                    {{ $employee->name }} ({{ $employee->email }}) - {{ $employee->position ?? 'Admin' }}
+                                </option>
+                            @endforeach
                         </select>
-                        
-                        <!-- User Recipients -->
-                        <div id="user-recipients" class="hidden">
-                            <label for="receiver_id_user" class="block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                                Select User
-                            </label>
-                            <select name="receiver_id" id="receiver_id_user" class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white">
-                                <option value="">Select a user to send message to</option>
-                                @foreach($users as $user)
-                                    <option value="{{ $user->id }}" {{ old('receiver_id') == $user->id ? 'selected' : '' }}>
-                                        {{ $user->name }} ({{ $user->email }})
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        
-                        <!-- Employee Recipients -->
-                        <div id="employee-recipients" class="hidden">
-                            <label for="receiver_id_employee" class="block text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                                Select Admin/Support Team Member
-                            </label>
-                            <select name="receiver_id" id="receiver_id_employee" class="w-full border border-gray-300 dark:border-gray-600 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white">
-                                <option value="">Select an admin/support team member</option>
-                                @foreach($employees as $employee)
-                                    <option value="{{ $employee->id }}" {{ old('receiver_id') == $employee->id ? 'selected' : '' }}>
-                                        {{ $employee->name }} ({{ $employee->email }}) - {{ $employee->position ?? 'Admin' }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <input type="hidden" name="receiver_type" value="App\Models\Employee">
                     </div>
 
                     <!-- Project Selection (Optional) -->
@@ -149,7 +123,7 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                             </svg>
-                            <span>Send Message</span>
+                            <span>Send to Admin</span>
                         </button>
                     </div>
                 </form>
@@ -160,45 +134,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const receiverTypeSelect = document.getElementById('receiver_type');
-    const userRecipients = document.getElementById('user-recipients');
-    const employeeRecipients = document.getElementById('employee-recipients');
-    const userSelect = document.getElementById('receiver_id_user');
-    const employeeSelect = document.getElementById('receiver_id_employee');
-
-    // Handle receiver type change
-    receiverTypeSelect.addEventListener('change', function() {
-        const selectedType = this.value;
-        
-        // Hide all recipient sections
-        userRecipients.classList.add('hidden');
-        employeeRecipients.classList.add('hidden');
-        
-        // Clear all selects
-        userSelect.value = '';
-        employeeSelect.value = '';
-        
-        // Show appropriate section
-        if (selectedType === 'App\\Models\\User') {
-            userRecipients.classList.remove('hidden');
-            userSelect.required = true;
-            employeeSelect.required = false;
-        } else if (selectedType === 'App\\Models\\Employee') {
-            employeeRecipients.classList.remove('hidden');
-            employeeSelect.required = true;
-            userSelect.required = false;
-        } else {
-            userSelect.required = false;
-            employeeSelect.required = false;
-        }
-    });
-
-    // Set initial state based on old values
-    const oldReceiverType = '{{ old("receiver_type") }}';
-    if (oldReceiverType) {
-        receiverTypeSelect.value = oldReceiverType;
-        receiverTypeSelect.dispatchEvent(new Event('change'));
-    }
+    // No specific JavaScript logic needed for this form as it only shows one recipient type.
 });
 </script>
 @endsection 

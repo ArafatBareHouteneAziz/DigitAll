@@ -17,7 +17,7 @@
                         </div>
                         <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Messages</h1>
                     </div>
-                    <p class="text-lg text-gray-600 dark:text-gray-400">Stay connected with your projects and team</p>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">Contact admin team for project support and inquiries</p>
                 </div>
                 <div class="flex items-center space-x-4">
                     @if($unreadCount > 0)
@@ -31,13 +31,13 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                         </svg>
-                        <span>Send Message</span>
+                        <span>Contact Admin</span>
                     </a>
                     <button id="chatbot-toggle" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                         </svg>
-                        <span>AI Assistant</span>
+                        <span>Contact Admin</span>
                     </button>
                 </div>
             </div>
@@ -84,6 +84,11 @@
                                                     {{ $message->project->title }}
                                                 </span>
                                             @endif
+                                            @if($message->receiver_type === 'App\Models\Employee')
+                                                <span class="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs font-medium">
+                                                    Admin Team
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -126,13 +131,13 @@
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">No Messages Yet</h3>
-                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">You'll see messages from your projects and team here. Start a conversation or check back later for updates.</p>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">Contact the admin team for project support, technical assistance, or any questions about your projects.</p>
                 <div class="flex items-center justify-center space-x-4">
                     <a href="{{ route('messages.create') }}" class="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-3">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                         </svg>
-                        <span>Send Message</span>
+                        <span>Contact Admin</span>
                     </a>
                     <button id="chatbot-toggle" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center space-x-3">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

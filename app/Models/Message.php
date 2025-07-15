@@ -11,6 +11,7 @@ class Message extends Model
 
     protected $fillable = [
         'sender_id',
+        'sender_type',
         'receiver_id',
         'receiver_type',
         'project_id',
@@ -29,7 +30,7 @@ class Message extends Model
 
     public function sender()
     {
-        return $this->belongsTo(User::class, 'sender_id');
+        return $this->morphTo();
     }
 
     public function receiver()

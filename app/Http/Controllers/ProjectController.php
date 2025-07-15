@@ -64,7 +64,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $this->authorize('view', $project);
-        $project->load(['service', 'messages.user']);
+        $project->load(['service', 'messages.sender']);
         return view('projects.show', compact('project'));
     }
 

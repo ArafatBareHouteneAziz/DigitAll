@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function sentMessages()
     {
-        return $this->hasMany(Message::class, 'sender_id');
+        return $this->morphMany(Message::class, 'sender');
     }
 
     public function receivedMessages()

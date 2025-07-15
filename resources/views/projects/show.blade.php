@@ -104,12 +104,12 @@
                                 <div class="flex items-start space-x-3">
                                     <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
                                         <span class="text-primary-600 font-semibold text-sm">
-                                            {{ substr($message->user->name, 0, 1) }}
+                                            {{ substr($message->sender->name, 0, 1) }}
                                         </span>
                                     </div>
                                     <div class="flex-1 bg-neutral-50 rounded-xl p-4">
                                         <div class="flex items-center justify-between mb-2">
-                                            <h4 class="font-semibold text-neutral-900">{{ $message->user->name }}</h4>
+                                            <h4 class="font-semibold text-neutral-900">{{ $message->sender->name }}</h4>
                                             <span class="text-xs text-neutral-500">{{ $message->created_at->diffForHumans() }}</span>
                                         </div>
                                         <p class="text-neutral-700">{{ $message->content }}</p>
@@ -131,6 +131,7 @@
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $project->id }}">
                         <input type="hidden" name="receiver_id" value="{{ $project->user_id }}">
+                        <input type="hidden" name="receiver_type" value="App\Models\User">
                         <input type="hidden" name="subject" value="Project: {{ $project->title }}">
                         
                         <div class="flex space-x-3">

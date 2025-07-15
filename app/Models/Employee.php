@@ -37,6 +37,11 @@ class Employee extends Authenticatable implements FilamentUser
         return $this->morphMany(Message::class, 'receiver');
     }
 
+    public function sentMessages()
+    {
+        return $this->morphMany(Message::class, 'sender');
+    }
+
     public function unreadMessages()
     {
         return $this->receivedMessages()->where('is_read', false);

@@ -26,11 +26,10 @@ class MessageController extends Controller
 
     public function create()
     {
-        $users = User::where('id', '!=', Auth::id())->get();
         $employees = Employee::where('is_active', true)->get();
         $projects = Auth::user()->projects()->get();
         
-        return view('messages.create', compact('users', 'employees', 'projects'));
+        return view('messages.create', compact('employees', 'projects'));
     }
 
     public function show(Message $message)
@@ -51,7 +50,7 @@ class MessageController extends Controller
     {
         $validated = $request->validate([
             'receiver_id' => 'required',
-            'receiver_type' => 'required|in:App\\Models\\User,App\\Models\\Employee',
+            'receiver_type' => 'required|in:App\\Models\\Employee',
             'project_id' => 'nullable|exists:projects,id',
             'subject' => 'required|string|max:255',
             'content' => 'required|string',
@@ -59,6 +58,7 @@ class MessageController extends Controller
 
         $message = new Message($validated);
         $message->sender_id = Auth::id();
+        $message->sender_type = User::class;
         $message->is_read = false;
         $message->save();
 
